@@ -1,0 +1,31 @@
+#user_history{
+    margin: auto;
+    margin-top: 70px;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 80px;
+}
+th{
+    text-align: left;
+    padding: 8px;
+    background: rgb(98, 243, 163);
+    color: #fff;
+}
+td{
+    text-align: left;
+    padding: 8px; 
+}
+tr:nth-child(even){
+    background-color: #fff;
+}
+
+@media only screen and (max-width: 950px) {
+    
+    
+}
+@media only screen and (max-width: 700px) {
+    
+    
+}
