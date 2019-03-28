@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/transactions.css">
+    <link rel="stylesheet" href="css/transactions_details.css">
+    <title>User | Transactions</title>
+</head>
+<body>
+   <section>
+       <header>
+           <div id="navbar">
+               <div id="logo">
+                    <h2>My<span>Banka</span></h2> 
+               </div>
+               <div class="toggle_btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+           </div>
+        <div id="sidebar">
+            <img src="img/avatar.png" alt="" id="user_image">
+            <p id="user_name">Igwe Chinonso</p>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="create_user_account.html">Create Account</a></li>
+                <li class="active_ul"><a href="transactions.html">Transactions</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+       </header>
+   </section>
+   <section>
+       <div id="main">
+            <div id="second_navbar">
+                 <h3>Transaction Details</h3>
+            </div>
+            <div id="user_history">
+                   <div>
+                    <h2>Account Name</h2><br>
+                    <p>Igwe Abraham Chinonso</p>
+                    </div>         
+                   <div>
+                        <h2>Account Number</h2><br>
+                        <p>0114276910</p>
+                  </div>         
+                   <div>
+                        <h2>Account Type</h2><br>
+                        <p>Savings</p>    
+                  </div>         
+                   <div>
+                        <h2>Transaction Type</h2><br>
+                        <p>Credit</p> 
+                </div>         
+                   <div>
+                        <h2>Amount</h2><br>
+                        <p>5,000</p>       
+                </div>         
+                   <div>
+                        <h2>Old Balance</h2><br>
+                        <p>50,000</p>       
+                </div>
+                <div>
+                        <h2>New Balance</h2><br>
+                        <p>55,000</p>       
+                </div>
+                <div>
+                        <h2>Cashier</h2><br>
+                        <p>Deborah Omono</p>       
+                </div>
+            </div>
+
+            <a href="transactions.html">Back</a>
+       </div>
+   </section>
+   <section>
+       <footer>
+        <div id="footer">
+                <p>copyright @banka</p> 
+        </div>
+       </footer>
+   </section>
+<script src="js/index.js"></script>
+</body>
+</html>
