@@ -1,0 +1,33 @@
+#credit_debit_user{
+    width: 60%;
+    margin-left: 15%;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+#credit_debit_user h2{
+    margin-bottom:30px;
+    text-align: center;
+}
+input[type=submit]{
+    margin-top: 30px;
+}
+
+@media only screen and (max-width: 950px) {
+    #credit_debit_user h2{
+        font-size: 100%;
+    }
+}
+@media only screen and (max-width: 770px) {
+    #credit_debit_user h2{
+        font-size: 100%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    #credit_debit_user h2{
+        font-size: 110%;
+    }
+    #credit_debit_user{
+        width: 70%;
+        margin-left: 15%;
+    }
+}
