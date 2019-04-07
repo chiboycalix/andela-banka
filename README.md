@@ -84,7 +84,7 @@ API is deployed at [https://andela-banka.herokuapp.com](https://andela-banka.her
 * Run npm install to install packages
 * Setup a postgreSQL database and configure the database files accordingly
 * Run npm start to migrate all database tables and start the server
-* Navigate to [localhost:3000](http://localhost:4000/) in a browser to access the application
+* Navigate to [localhost:3000](http://localhost:3000/) in a browser to access the application
 
 
 ### Testing
