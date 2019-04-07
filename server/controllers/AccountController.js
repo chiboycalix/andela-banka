@@ -35,6 +35,23 @@ class AccountController {
       }
     }
   }
+
+  static patchAccount(request, response) {
+    const { accountNum } = request.params;
+    const { status } = request.body;
+    for (let i = 0; i < accounts.length; i += 1) {
+      if (accounts[i].accountNumber === accountNum) {
+        accounts[i].status = status;
+        return response.status(200).json({
+          status: 200,
+          data: {
+            accountNumber: accountNum,
+            status,
+          },
+        });
+      }
+    }
+  }
 }
 
 export default AccountController;
