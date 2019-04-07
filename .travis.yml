@@ -9,7 +9,7 @@ after_success: npm run coverage
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=process.env.REPO_ID
 language: node_js
 rvm:
   - 2.2.0
