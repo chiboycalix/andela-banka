@@ -1,7 +1,9 @@
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import users from '../db/users';
 
+dotenv.config();
 
 class UserController {
   static signup(request, response) {
@@ -38,7 +40,7 @@ class UserController {
         id: user.id,
         isAdmin: user.isAdmin,
         type: user.type,
-      }, 'secret', { expiresIn: '1h' });
+      }, process.env.SECRET, { expiresIn: '1h' });
       return response.header('x-access-token', token).status(201).json({
         status: 201,
         data: {
@@ -51,6 +53,37 @@ class UserController {
           type: 'staff',
         },
       });
+    });
+  }
+
+  static login(request, response) {
+    const {
+      email, password,
+    } = request.body;
+    for (let i = 0; i < users.length; i += 1) {
+      if (users[i].email === email && users[i].password === password) {
+        const token = jwt.sign({
+          email: users[i].email,
+          id: users[i].id,
+          isAdmin: users[i].isAdmin,
+          type: users[i].type,
+        }, process.env.SECRET, { expiresIn: '1h' });
+        return response.header('x-access-token', token).status(200).json({
+          status: 200,
+          data: {
+            token,
+            id: users[i].id,
+            firstName: users[i].firstName,
+            lastName: users[i].lastName,
+            email,
+            type: users[i].type,
+          },
+        });
+      }
+    }
+    return response.status(404).json({
+      status: 404,
+      error: 'Email or Password is Incorrect',
     });
   }
 }
