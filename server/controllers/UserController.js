@@ -77,6 +77,7 @@ class UserController {
             lastName: users[i].lastName,
             email,
             type: users[i].type,
+            isAdmin: users[i].isAdmin,
           },
         });
       }

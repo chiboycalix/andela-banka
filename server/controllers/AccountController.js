@@ -52,6 +52,26 @@ class AccountController {
       }
     }
   }
+
+  static getAccounts(request, response) {
+    return response.status(200).json({
+      status: 200,
+      data: accounts,
+    });
+  }
+
+  static deleteAccount(request, response) {
+    const { accountNum } = request.params;
+    for (let i = 0; i < accounts.length; i += 1) {
+      if (accounts[i].accountNumber === accountNum) {
+        accounts.splice(accounts[i].id - 1, 1);
+        return response.status(200).json({
+          status: 200,
+          message: 'Account successfully deleted',
+        });
+      }
+    }
+  }
 }
 
 export default AccountController;
