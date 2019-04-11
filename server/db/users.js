@@ -1,11 +1,10 @@
-
 const users = [
   {
     id: 1,
     firstName: 'calix',
     lastName: 'deb',
     email: 'deb@gmail.com',
-    password: 'password',
+    password: '1234',
     type: 'client',
     isAdmin: false,
   },
