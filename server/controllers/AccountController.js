@@ -53,6 +53,24 @@ class AccountController {
     }
   }
 
+  static getAccount(request, response) {
+    const { accountNum } = request.params;
+    const { id } = request.userData;
+    for (let i = 0; i < accounts.length; i += 1) {
+      if (accounts[i].accountNumber === accountNum) {
+        return response.status(200).json({
+          status: 200,
+          data: {
+            userId: id,
+            accountNum,
+            status: accounts[i].status,
+            balance: accounts[i].balance,
+          },
+        });
+      }
+    }
+  }
+
   static getAccounts(request, response) {
     return response.status(200).json({
       status: 200,

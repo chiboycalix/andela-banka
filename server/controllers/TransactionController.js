@@ -77,14 +77,11 @@ class TransactionController {
 
   static getTransaction(request, response) {
     const { transactionId } = request.params;
-    for (let i = 0; i < transactions.length; i += 1) {
-      if (transactions[i].id === transactionId) {
-        return response.status(200).json({
-          status: 200,
-          data: transactions[i],
-        });
-      }
-    }
+    const transaction = transactions.filter(transac => transac.id === transactionId);
+    return response.status(200).json({
+      status: 200,
+      data: transaction[0],
+    });
   }
 }
 
