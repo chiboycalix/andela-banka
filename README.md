@@ -16,7 +16,7 @@ This is an application that lets Users
 
 
 
-## Table of Contents
+<!-- ## Table of Contents
 
 * [Technologies](#technologies)
  * [Features](#features)
@@ -109,4 +109,4 @@ API is deployed at [https://andela-banka.herokuapp.com](https://andela-banka.her
 ### Development
 [Babe-Node](https://babeljs.io) helps to compile es6 codes to es5 before running the server. 
 
-
+ -->
