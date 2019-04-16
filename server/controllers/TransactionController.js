@@ -24,7 +24,7 @@ class TransactionController {
           status: 201,
           data: {
             transactionId: transaction.transactionId,
-            accountNumber: accountNum,
+            accountNumber: parseInt(accountNum, 10),
             amount,
             transactionType,
             accountBalance: transaction.newBalance,
