@@ -1,236 +1,214 @@
 *{
-    margin: 0px;
-    padding: 0px;
-    font-family: Courier New, Courier, monospace;
+  margin: 0;
+  padding: 0;
 }
 body{
-    box-sizing: border-box;
-    background: #f2f2f2;
+  width: 90vw;
+  height: 90vh;
+  background-image: url('../img/banka.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, Helvetica, sans-serif;
 }
+header h1{
+  margin: 20px;
+  padding: 10px;
+  color: #fff;
+}
+nav{
+  position: relative;
+  float: right;
+  top: -60px;
+}
+nav ul{
+  list-style: none;
+}
+nav ul li{
+  display: block;
+  float: left;
+  padding: 15px;
+}
+nav ul li a{
+  color: #fff;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  margin-left: 98%;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#signup{
+  display: none;
+}
+#user_signup{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+}
+#user_signup p{
+    text-align: center;
+    margin-top: 20px;
+}
+#user_signup p a{
+    color: rgb(3, 126, 56);
+    text-decoration: none;
+}
+
 #navbar{
-    position: fixed;
-    z-index: 1;
-    height: 50px;
-    width: 100%;
-    background: rgb(98, 243, 163);
+  position: fixed;
+  z-index: 1;
+  height: 50px;
+  width: 100%;
+  background: rgb(98, 243, 163);
 }
 #navbar #logo h2{
-    padding: 10px;
+  padding: 10px;
 }
 
-
-#sidebar{
-    position: fixed;
-    width: 200px;
-    height: 100%;
-    background: #151719;
-    left: 0px;
+#user_login{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
 }
-.toggle_btn{
-    position: absolute;
-    right: 5%;
-    top: 10px;
-    cursor: pointer;
-    display: none;
+#user_login p{
+  text-align: center;
+  margin-top: 20px;
 }
-.toggle_btn span{
-    display: block;
-    width: 30px;
-    height: 5px;
-    background: #fff;
-    margin: 3px 0px;
+#user_login p a{
+  color: rgb(3, 126, 56);
+  text-decoration: none;
 }
-#sidebar #user_image{
-    width: 100px;
-    height: 100px;
-    margin-left: 50px;
-    margin-top: 100px;
-    border-radius: 50%;
-}
-#sidebar p#user_name{
-    color: #fff;
-    text-align: center;
-    margin-top: 10px;
-}
-#sidebar ul{
-    margin-top: 50px;
-}
-#sidebar ul li{
-    color: #fff;
-    list-style: none;
-    padding: 15px 10px;
-    border-bottom: 1px solid black;
-}
-#sidebar ul li.active_ul{
-    color: #fff;
-    background: rgb(98, 243, 163);
-}
-#sidebar ul li.active_ul a:hover{
-    color: #fff;
-    background: rgb(98, 243, 163);
-}
-#sidebar ul li a{
-    text-decoration: none;
-    color: #fff;
-}
-#sidebar ul li a:hover{
-    color: rgb(98, 243, 163);
-}
-#main{
-    margin-left: 200px;
-    position: relative;
+#login{
+  margin-left: 0px;
+  position: relative;
+  display: block;
 }
 #second_navbar{
-    height: 45px;
-    width: 100%;
-    color: #000;
-    background: #fff;
-    border-bottom: 1px solid rgb(202, 198, 198);
-    position: relative;
-    top: 50px;
-    text-align: center;
+  height: 50px;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  color: #000;
+  background: rgb(98, 243, 163);
+  border-bottom: 1px solid rgb(202, 198, 198);
+  position: relative;
+  text-align: center;
 }
 #second_navbar h3{
-    padding: 9px;
-    display: inline-block;
+  padding: 15px;
+  display: inline-block;
 }
 #second_navbar span{
-    color: rgb(3, 126, 56);
+  color: rgb(3, 126, 56);
 }
-#user_account_details{
-    width: 98%;
-    margin-top: 70px;
-    margin-left:1% ;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-}
-#welcome_div{
-    width: 90%;
-    margin-left: 5%;
-    height: 200px;
-    background: #fff;
-    margin-top: 80px;
-}
-#account_number{
-    background: blue;
-    color: #fff;
-    height: 150px;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-#account_type{
-    background: red;
-    color: #fff;
-    height: 150px;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-#account_balance{
-    background: green;
-    color: #fff;
-    height: 150px;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-#date_created{
-    background: orange;
-    color: #fff;
-    height: 150px;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-#account_name h2{
-    margin-bottom: 10px;
-}
-#account_number h2{
-    margin-bottom: 10px;
-}
-#account_type h2{
-    margin-bottom: 10px;
-}
-#date_created h2{
-    margin-bottom: 10px;
-}
+
 
 input[type=text],input[type=password], select{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 15px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 input[type=submit]{
-    width: 100%;
-    background: rgb(98, 243, 163);
-    color: #fff;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  background: rgb(98, 243, 163);
+  color: #fff;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 input[type=submit]:hover{
-    background: rgb(3, 126, 56);
-}
-#accounts_div{
-    display: none;
-}
-#footer{
-    position: fixed;
-    z-index: 1;
-    height: 50px;
-    width: 100%;
-    bottom: 0px;
-    background: rgb(98, 243, 163);
-    text-align: center;
-}
-#footer p{
-    margin-top: 15px;
+  background: rgb(3, 126, 56);;
 }
 
-@media only screen and (max-width: 950px) {
-    #user_account_details{
-        width: 98%;
-        margin-top: 80px;
-        margin-left: 1%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-    }
+#homepage{
+  display: block;
+  margin: 60px auto;
+  width: 80%;
+  background: #f4f4f4;
 }
-@media only screen and (max-width: 700px) {
-    #user_account_details{
-        width: 98%;
-        margin-top: 80px;
-        margin-left: 1%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 20px;
-        margin-bottom: 100px;
-    }
-    #sidebar{
-        left: -200px;
-    }
-    #main{
-        margin-left: 0%;
-        position: relative;
-    }
-    #sidebar.active{
-        left: 0px;
-        z-index: 10;
-    }
-    #second_navbar{
-        font-size: 75%;
-    }
-    .toggle_btn{
-        display: block;
-        transition: 0.5s all;
-    }
-    
+#homepage #welcome_h1{
+  text-align: center;
+  padding: 30px;
+}
+#inner_homepage{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.card{
+  background: #fff;
+}
+.card-img{
+  width: 320px;
+  border-bottom: 2px solid rgb(98, 243, 163);
+}
+.card p {
+  text-align: center;
+  padding: 10px;
+}
+.card #tran_code{
+  padding: 20px;
+}
+.card button{
+  padding: 10px;
+  background: rgb(98, 243, 163);
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+#card_2{
+  text-align: center;
+  padding: 10px;
+}
+#card_2 a{
+  padding: 9px;
+  display: block;
 }
