@@ -1,7 +1,7 @@
 #user_history{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-gap: 20px;
     width: 90%;
     margin-left: 5%;
     margin-top: 100px;
@@ -13,15 +13,4 @@
     display: block;
     text-align: center;
     margin-top: 50px;
-}
-
-@media only screen and (max-width: 700px) {
-    #user_history{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 40px;
-        width: 90%;
-        margin-left: 5%;
-        margin-top: 100px;
-    }
 }
