@@ -23,7 +23,7 @@ class AccountController {
         return response.status(201).json({
           status: 201,
           data: {
-            accountNumber: account.accountNumber,
+            accountNumber: parseInt(account.accountNumber, 10),
             firstName: users[i].firstName,
             lastName: users[i].lastName,
             email: users[i].email,
@@ -47,6 +47,24 @@ class AccountController {
           data: {
             accountNumber: accountNum,
             status,
+          },
+        });
+      }
+    }
+  }
+
+  static getAccount(request, response) {
+    const { accountNum } = request.params;
+    const { id } = request.userData;
+    for (let i = 0; i < accounts.length; i += 1) {
+      if (accounts[i].accountNumber === accountNum) {
+        return response.status(200).json({
+          status: 200,
+          data: {
+            userId: id,
+            accountNum,
+            status: accounts[i].status,
+            balance: accounts[i].balance,
           },
         });
       }
