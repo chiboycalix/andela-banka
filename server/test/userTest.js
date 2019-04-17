@@ -106,23 +106,4 @@ describe('POST api/v1/auth/signup', () => {
         response.body.error.should.equal('email is required');
       });
   });
-  const userWithInvalidEmail = {
-    firstName: 'chinonso',
-    lastName: 'calix',
-    email: 'chi@gmail',
-    password: 1234,
-    type: 'client',
-    isAdmin: false,
-  };
-  it('user must provide a valid email', () => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', token)
-      .send(userWithInvalidEmail)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('Please provide a valid email');
-      });
-  });
 });
