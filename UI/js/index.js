@@ -2,12 +2,16 @@
 const modal = document.getElementById('myModal');
 const btn1 = document.getElementById('myBtn');
 const btn2 = document.getElementById('myBtn2');
+const btn3 = document.getElementById('myBtn3');
 const span = document.getElementById('close-span');
 
 btn1.onclick = () => {
   modal.style.display = 'block';
 };
 btn2.onclick = () => {
+  modal.style.display = 'block';
+};
+btn3.onclick = () => {
   modal.style.display = 'block';
 };
 

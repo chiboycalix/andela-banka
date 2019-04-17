@@ -4,14 +4,16 @@
 }
 table{
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 80px;
 }
 th{
     text-align: left;
     padding: 8px;
-    background: rgb(98, 243, 163);
+    background: #003459;
     color: #fff;
+    height: 40px;
 }
 td{
     text-align: left;
@@ -22,8 +24,8 @@ tr:nth-child(even){
 }
 .pagination{
     display: block;
-    margin: 150px auto;
-    padding-right: 40px;
+    margin-top: 40px;
+    margin-right: 120px;
 }
 .pagination a {
     color: black;
@@ -34,7 +36,7 @@ tr:nth-child(even){
 }
   
 .pagination a.active {
-    background-color: rgb(98, 243, 163);
+    background: #003459;
     color: white;
 }
   
@@ -45,6 +47,11 @@ tr:nth-child(even){
     
 }
 @media only screen and (max-width: 700px) {
-    
+    table{
+        border-collapse: collapse;
+        margin-top: 80px;
+        font-size: .7rem;
+        width: 100%;
+    }
     
 }
