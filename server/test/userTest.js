@@ -42,13 +42,6 @@ describe('POST api/v1/auth/signup', () => {
         response.should.have.status(201);
         response.body.should.be.a('object');
         response.body.should.have.property('data');
-        response.body.data.should.have.property('token');
-        response.body.data.should.have.property('firstName');
-        response.body.data.should.have.property('lastName');
-        response.body.data.should.have.property('email');
-        response.body.data.should.have.property('password');
-        response.body.data.should.have.property('type');
-        response.body.data.should.have.property('isAdmin');
       });
   });
   const userWithoutFirstname = {
@@ -106,4 +99,87 @@ describe('POST api/v1/auth/signup', () => {
         response.body.error.should.equal('email is required');
       });
   });
+  const userWithInvalidEmail = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'chi@gmail',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
+  };
+  it('user must provide a valid email', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', token)
+      .send(userWithInvalidEmail)
+      .end((request, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Please provide a valid email');
+      });
+  });
+
+  const userWithoutPassword = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'chi@gmail.com',
+    type: 'client',
+    isAdmin: false,
+  };
+  it('user must provide a password', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', token)
+      .send(userWithoutPassword)
+      .end((request, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('password is required');
+      });
+  });
+
+  const correctUser1 = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'igwechinonso77@gmail.com',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
+  };
+  const token1 = jwt.sign({
+    email: correctUser1.email,
+    id: correctUser1.id,
+    isAdmin: correctUser1.isAdmin,
+    type: correctUser1.type,
+  }, process.env.SECRET, { expiresIn: '1h' });
+
+  it('You must not register two users with the same Email', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', token1)
+      .send(correctUser1)
+      .send(correctUser1)
+      .end((request, response) => {
+        response.should.have.status(409);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('email exist');
+      });
+  });
+});
+
+describe('GET /auth/login', () => {
+  it('it should log in the user', (() => {
+    const loginDetails = {
+      email: 'igwechinonso77@gmail.com',
+      password: 1234,
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(loginDetails)
+      .end((err, res) => {
+        res.should.have.status(201);
+        // eslint-disable-next-line prefer-destructuring
+        token = res.body.data[0].token;
+      });
+  }));
 });

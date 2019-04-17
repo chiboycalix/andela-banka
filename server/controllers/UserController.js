@@ -22,6 +22,23 @@ class UserController {
       data: user.rows,
     });
   }
+
+  // Login function
+  static async login(request, response) {
+    const checkMail = await User.checkEmail(request.body.email);
+    if (!checkMail) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Email does not exist',
+      });
+    }
+    const login = await User.loginUser(request.body);
+    return response.status(200).json({
+      status: 200,
+      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '1h' }),
+      data: login.rows,
+    });
+  }
 }
 
 export default UserController;

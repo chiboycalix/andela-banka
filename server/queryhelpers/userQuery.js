@@ -33,7 +33,16 @@ const checkEmail = async (email) => {
   return false;
 };
 
+
+const loginUser = (userDetails) => {
+  const { email } = userDetails;
+  return db.query(
+    'SELECT id, email, password, firstName, lastName FROM users WHERE email = $1 LIMIT 1', [email],
+  ).catch(error => error.message);
+};
+
 export default {
   createUser,
   checkEmail,
+  loginUser,
 };

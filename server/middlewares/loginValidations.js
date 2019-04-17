@@ -29,12 +29,6 @@ const loginValidation = (request, response, next) => {
       });
     }
   }
-  if (!password.match(/[^\s-]/)) {
-    return response.status(400).json({
-      status: 400,
-      error: 'Spaces are not allowed',
-    });
-  }
   next();
 };
 
