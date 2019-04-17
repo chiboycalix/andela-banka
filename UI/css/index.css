@@ -4,21 +4,26 @@
 }
 body{
   width: 90vw;
-  height: 90vh;
-  background-image: url('../img/banka.jpg');
+  height: 97.1vh;
+  background: linear-gradient( #00000000, #000 ), url('../img//bgbanka.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
 }
 header h1{
   margin: 20px;
   padding: 10px;
   color: #fff;
 }
+header h1 a{
+  color: #fff;
+  text-decoration: none;
+}
 nav{
   position: relative;
   float: right;
-  top: -60px;
+  top: -75px;
 }
 nav ul{
   list-style: none;
@@ -57,7 +62,6 @@ nav ul li a{
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
-  height: 70%;
 }
 
 /* The Close Button */
@@ -90,20 +94,11 @@ nav ul li a{
     margin-top: 20px;
 }
 #user_signup p a{
-    color: rgb(3, 126, 56);
+    color: #003459;;
     text-decoration: none;
 }
 
-#navbar{
-  position: fixed;
-  z-index: 1;
-  height: 50px;
-  width: 100%;
-  background: rgb(98, 243, 163);
-}
-#navbar #logo h2{
-  padding: 10px;
-}
+
 
 #user_login{
   width: 50%;
@@ -117,7 +112,7 @@ nav ul li a{
   margin-top: 20px;
 }
 #user_login p a{
-  color: rgb(3, 126, 56);
+  color: #00A8E8;
   text-decoration: none;
 }
 #login{
@@ -131,7 +126,7 @@ nav ul li a{
   display: block;
   margin: 0 auto;
   color: #000;
-  background: rgb(98, 243, 163);
+  background: #003459;
   border-bottom: 1px solid rgb(202, 198, 198);
   position: relative;
   text-align: center;
@@ -139,9 +134,10 @@ nav ul li a{
 #second_navbar h3{
   padding: 15px;
   display: inline-block;
+  color: #fff;
 }
 #second_navbar span{
-  color: rgb(3, 126, 56);
+  color: #fff;
 }
 
 
@@ -156,7 +152,7 @@ input[type=text],input[type=password], select{
 }
 input[type=submit]{
   width: 100%;
-  background: rgb(98, 243, 163);
+  background: #003459;
   color: #fff;
   padding: 14px 20px;
   border: none;
@@ -164,51 +160,66 @@ input[type=submit]{
   cursor: pointer;
 }
 input[type=submit]:hover{
-  background: rgb(3, 126, 56);;
+  background: #003459;
 }
 
 #homepage{
   display: block;
-  margin: 60px auto;
-  width: 80%;
-  background: #f4f4f4;
-}
-#homepage #welcome_h1{
+  margin: 150px auto;
+  color: #fff;
+  width: 50%;
   text-align: center;
-  padding: 30px;
 }
-#inner_homepage{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-}
-.card{
-  background: #fff;
-}
-.card-img{
-  width: 320px;
-  border-bottom: 2px solid rgb(98, 243, 163);
-}
-.card p {
-  text-align: center;
-  padding: 10px;
-}
-.card #tran_code{
+#homepage h1{
   padding: 20px;
 }
-.card button{
-  padding: 10px;
-  background: rgb(98, 243, 163);
-  display: block;
-  margin: auto;
-  margin-bottom: 30px;
+#homepage p{
+  padding: 5px;
+}
+#homepage button{
+  padding: 15px;
+  width: 300px;
+  border-radius: 50px;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  border: 1px solid #fff;
+  margin: 40px;
+  cursor: pointer;
+  outline: none;
+}
+#homepage button:hover{
+  background: #003459;
+  color: #fff;
+  border: 1px solid #fff;
   cursor: pointer;
 }
-#card_2{
-  text-align: center;
-  padding: 10px;
+
+@media only screen and (max-width: 950px) {
+    
+    
 }
-#card_2 a{
-  padding: 9px;
-  display: block;
+@media only screen and (max-width: 700px) {
+  #homepage button{
+    margin-left: -40px;
+  }
+  nav{
+    position: relative;
+    float: right;
+    top: -65px;
+  }
+  nav ul{
+    list-style: none;
+  }
+  nav ul li{
+    display: block;
+    float: left;
+    padding: 4px;
+  }
+  nav ul li a{
+    color: #fff;
+    font-size: 25px;
+    text-decoration: none;
+  }
+    
 }
