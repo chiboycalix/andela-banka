@@ -6,13 +6,15 @@
 body{
     box-sizing: border-box;
     background: #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
 }
 #navbar{
     position: fixed;
     z-index: 1;
     height: 50px;
     width: 100%;
-    background: rgb(98, 243, 163);
+    background: #003459;
+    color: #fff;
 }
 #navbar #logo h2{
     padding: 10px;
@@ -31,7 +33,7 @@ body{
     margin-top: 20px;
 }
 #user_login p a{
-    color: rgb(3, 126, 56);
+    color: #003459;
     text-decoration: none;
 }
 #main{
@@ -53,7 +55,7 @@ body{
     display: inline-block;
 }
 #second_navbar span{
-    color: rgb(3, 126, 56);
+    color: #003459;
 }
 
 
@@ -68,7 +70,7 @@ input[type=text],input[type=password], select{
 }
 input[type=submit]{
     width: 100%;
-    background: rgb(98, 243, 163);
+    background: #003459;
     color: #fff;
     padding: 14px 20px;
     border: none;
@@ -76,7 +78,7 @@ input[type=submit]{
     cursor: pointer;
 }
 input[type=submit]:hover{
-    background: rgb(3, 126, 56);;
+    background: #003459;
 }
 #accounts_div{
     display: none;
@@ -87,9 +89,10 @@ input[type=submit]:hover{
     height: 50px;
     width: 100%;
     bottom: 0px;
-    background: rgb(98, 243, 163);
+    background: #003459;
     text-align: center;
 }
 #footer p{
     margin-top: 15px;
+    color: #fff;
 }
