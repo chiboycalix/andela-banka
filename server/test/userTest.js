@@ -33,7 +33,7 @@ describe('POST api/v1/auth/signup', () => {
     isAdmin: correctUser.isAdmin,
     type: correctUser.type,
   }, process.env.SECRET, { expiresIn: '1h' });
-  it('should be able to signup a user with correct details', (done) => {
+  it('should be able to signup a user with correct details', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send('x-access-token', token)
@@ -49,9 +49,9 @@ describe('POST api/v1/auth/signup', () => {
         response.body.data.should.have.property('password');
         response.body.data.should.have.property('type');
         response.body.data.should.have.property('isAdmin');
-        done();
       });
   });
+
   const userWithoutFirstname = {
     lastName: 'calix',
     email: 'igwechinonso77@gmail.com',
@@ -59,7 +59,7 @@ describe('POST api/v1/auth/signup', () => {
     type: 'client',
     isAdmin: false,
   };
-  it('user must provide first name', (done) => {
+  it('user must provide first name', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send('x-access-token', token)
@@ -68,178 +68,65 @@ describe('POST api/v1/auth/signup', () => {
         response.should.have.status(400);
         response.body.should.have.property('error');
         response.body.error.should.equal('firstname is required');
-        done();
       });
   });
 
-  const userWithoutLastname = {
-    firstName: 'chinonso',
-    email: 'igwechinonso77@gmail.com',
-    password: 1234,
-    type: 'client',
-    isAdmin: false,
-  };
-  it('user must provide last name', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', token)
-      .send(userWithoutLastname)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('lastname is required');
-        done();
-      });
-  });
-  const userWithoutEmail = {
-    firstName: 'chinonso',
-    lastName: 'calix',
-    password: 1234,
-    type: 'client',
-    isAdmin: false,
-  };
-  it('user must provide email', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', token)
-      .send(userWithoutEmail)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('email is required');
-        done();
-      });
-  });
-  const userWithInvalidEmail = {
-    firstName: 'chinonso',
-    lastName: 'calix',
-    email: 'chi@gmail',
-    password: 1234,
-    type: 'client',
-    isAdmin: false,
-  };
-  it('user must provide a valid email', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', token)
-      .send(userWithInvalidEmail)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('Please provide a valid email');
-        done();
-      });
-  });
-
-  const userWithoutPassword = {
-    firstName: 'chinonso',
-    lastName: 'calix',
-    email: 'chi@gmail.com',
-    type: 'client',
-    isAdmin: false,
-  };
-  it('user must provide a password', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', token)
-      .send(userWithoutPassword)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('password is required');
-        done();
-      });
-  });
-
-  const correctUser1 = {
-    firstName: 'chinonso',
+  const firstnameWithSpace = {
+    firstName: ' ',
     lastName: 'calix',
     email: 'igwechinonso77@gmail.com',
     password: 1234,
     type: 'client',
     isAdmin: false,
   };
-  const token1 = jwt.sign({
-    email: correctUser1.email,
-    id: correctUser1.id,
-    isAdmin: correctUser1.isAdmin,
-    type: correctUser1.type,
-  }, process.env.SECRET, { expiresIn: '1h' });
-
-  it('You must not register two users with the same Email', (done) => {
+  it('Spaces are not allowed in first name', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .send('x-access-token', token1)
-      .send(correctUser1)
-      .send(correctUser1)
+      .set('x-access-token', token)
+      .send(firstnameWithSpace)
       .end((request, response) => {
-        response.should.have.status(409);
+        response.should.have.status(400);
         response.body.should.have.property('error');
-        response.body.error.should.equal('Email already Exist');
-        done();
+        response.body.error.should.equal('Spaces are not allowed');
       });
   });
-});
 
-describe('POST /api/v1/auth/login', () => {
-  const login = {
+  const firstnameAsNumber = {
+    firstName: '6578',
+    lastName: 'calix',
     email: 'igwechinonso77@gmail.com',
-    password: '1234',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
   };
-
-  it('it should login a user with correct credentials', (done) => {
+  it('Firstname must be letters', () => {
     chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(login)
-      .end((request, response) => {
-        response.should.have.status(200);
-        response.body.should.have.property('data');
-        done();
-      });
-  });
-  const noEmail = {
-    email: '',
-    password: '1234',
-  };
-  it('user should provide an email', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(noEmail)
+      .post('/api/v1/auth/signup')
+      .set('x-access-token', token)
+      .send(firstnameAsNumber)
       .end((request, response) => {
         response.should.have.status(400);
         response.body.should.have.property('error');
-        response.body.error.should.equal('email is required');
-        done();
+        response.body.error.should.equal('Firstname must be letters');
       });
   });
-  const noPassword = {
-    email: 'deb@gmail.com',
-    password: '',
+  const userFirstnameLength = {
+    firstName: 'c',
+    lastName: 'calix',
+    email: 'igwechinonso77@gmail.com',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
   };
-  it('user should provide a password', (done) => {
+  it('firstname must be atleast 2 alphabets long', () => {
     chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(noPassword)
+      .post('/api/v1/auth/signup')
+      .set('x-access-token', token)
+      .send(userFirstnameLength)
       .end((request, response) => {
         response.should.have.status(400);
         response.body.should.have.property('error');
-        response.body.error.should.equal('password is required to login');
-        done();
-      });
-  });
-  const invalidEmail = {
-    email: 'debgmail.com',
-    password: '1234',
-  };
-  it('user should provide a valid email', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(invalidEmail)
-      .end((request, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('Please provide a valid email');
-        done();
+        response.body.error.should.equal('first Name must be atleast 3 alphabets');
       });
   });
 });
