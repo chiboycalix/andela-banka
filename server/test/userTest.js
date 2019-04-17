@@ -51,7 +51,6 @@ describe('POST api/v1/auth/signup', () => {
         response.body.data.should.have.property('isAdmin');
       });
   });
-
   const userWithoutFirstname = {
     lastName: 'calix',
     email: 'igwechinonso77@gmail.com',
@@ -71,62 +70,106 @@ describe('POST api/v1/auth/signup', () => {
       });
   });
 
-  const firstnameWithSpace = {
-    firstName: ' ',
-    lastName: 'calix',
+  const userWithoutLastname = {
+    firstName: 'chinonso',
     email: 'igwechinonso77@gmail.com',
     password: 1234,
     type: 'client',
     isAdmin: false,
   };
-  it('Spaces are not allowed in first name', () => {
+  it('user must provide last name', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .set('x-access-token', token)
-      .send(firstnameWithSpace)
+      .send('x-access-token', token)
+      .send(userWithoutLastname)
       .end((request, response) => {
         response.should.have.status(400);
         response.body.should.have.property('error');
-        response.body.error.should.equal('Spaces are not allowed');
+        response.body.error.should.equal('lastname is required');
+      });
+  });
+  const userWithoutEmail = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
+  };
+  it('user must provide email', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', token)
+      .send(userWithoutEmail)
+      .end((request, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('email is required');
+      });
+  });
+  const userWithInvalidEmail = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'chi@gmail',
+    password: 1234,
+    type: 'client',
+    isAdmin: false,
+  };
+  it('user must provide a valid email', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', token)
+      .send(userWithInvalidEmail)
+      .end((request, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Please provide a valid email');
       });
   });
 
-  const firstnameAsNumber = {
-    firstName: '6578',
+  const userWithoutPassword = {
+    firstName: 'chinonso',
     lastName: 'calix',
-    email: 'igwechinonso77@gmail.com',
-    password: 1234,
+    email: 'chi@gmail.com',
     type: 'client',
     isAdmin: false,
   };
-  it('Firstname must be letters', () => {
+  it('user must provide a password', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .set('x-access-token', token)
-      .send(firstnameAsNumber)
+      .send('x-access-token', token)
+      .send(userWithoutPassword)
       .end((request, response) => {
         response.should.have.status(400);
         response.body.should.have.property('error');
-        response.body.error.should.equal('Firstname must be letters');
+        response.body.error.should.equal('password is required');
       });
   });
-  const userFirstnameLength = {
-    firstName: 'c',
+
+  const correctUser1 = {
+    firstName: 'chinonso',
     lastName: 'calix',
     email: 'igwechinonso77@gmail.com',
     password: 1234,
     type: 'client',
     isAdmin: false,
   };
-  it('firstname must be atleast 2 alphabets long', () => {
+  const token1 = jwt.sign({
+    email: correctUser1.email,
+    id: correctUser1.id,
+    isAdmin: correctUser1.isAdmin,
+    type: correctUser1.type,
+  }, process.env.SECRET, { expiresIn: '1h' });
+
+  it('You must not register two users with the same Email', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
-      .set('x-access-token', token)
-      .send(userFirstnameLength)
+      .send('x-access-token', token1)
+      .send(correctUser1)
+      .send(correctUser1)
       .end((request, response) => {
-        response.should.have.status(400);
+        response.should.have.status(409);
         response.body.should.have.property('error');
-        response.body.error.should.equal('first Name must be atleast 3 alphabets');
+        response.body.error.should.equal('Email already Exist');
       });
   });
 });
