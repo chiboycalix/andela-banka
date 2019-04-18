@@ -13,32 +13,12 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('All Account tests', () => {
-  const client = {
-    firstName: 'chinonso',
-    lastName: 'calix',
-    email: 'igwechinonso@gmail.com',
-    password: 1234,
-    type: 'client',
-    isAdmin: false,
-  };
   const clientToken = jwt.sign({
-    email: client.email,
-    id: client.id,
-    isAdmin: client.isAdmin,
-    type: client.type,
+    email: 'igwechinonso77@gmail.com',
+    id: 1,
+    isAdmin: false,
+    type: 'client',
   }, process.env.SECRET, { expiresIn: '1h' });
-  it('should be able to signup a user with correct details', (done) => {
-    chai.request(server)
-      .post('/api/v1/auth/signup')
-      .send('x-access-token', clientToken)
-      .send(client)
-      .end((request, response) => {
-        response.should.have.status(201);
-        response.body.should.be.a('object');
-        response.body.should.have.property('data');
-        done();
-      });
-  });
   const account = {
     id: 1,
     accountNumber: '0114276912',
