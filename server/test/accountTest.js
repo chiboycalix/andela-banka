@@ -54,7 +54,7 @@ describe('All Account tests', () => {
   const staff = {
     firstName: 'chinonso',
     lastName: 'calix',
-    email: 'staff@gmail.com',
+    email: 'staff1@gmail.com',
     password: 1234,
     type: 'staff',
     isAdmin: true,
