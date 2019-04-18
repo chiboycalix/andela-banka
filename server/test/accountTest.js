@@ -13,12 +13,31 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('All Account tests', () => {
-  const clientToken = jwt.sign({
-    email: 'igwechinonso77@gmail.com',
-    id: 1,
-    isAdmin: false,
+  const client = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'igwechinonso@gmail.com',
+    password: 1234,
     type: 'client',
+    isAdmin: false,
+  };
+  const clientToken = jwt.sign({
+    email: client.email,
+    id: client.id,
+    isAdmin: client.isAdmin,
+    type: client.type,
   }, process.env.SECRET, { expiresIn: '1h' });
+  it('should be able to signup a user with correct details', () => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send('x-access-token', clientToken)
+      .send(client)
+      .end((request, response) => {
+        response.should.have.status(201);
+        response.body.should.be.a('object');
+        response.body.should.have.property('data');
+      });
+  });
   const account = {
     id: 1,
     accountNumber: '0114276912',
@@ -51,27 +70,29 @@ describe('All Account tests', () => {
     done();
   });
 
-  const staffToken = jwt.sign({
-    email: 'staff1@gmail.com',
-    id: 1,
+  const staff = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: 'staff@gmail.com',
+    password: 1234,
     type: 'staff',
     isAdmin: true,
+  };
+  const staffToken = jwt.sign({
+    email: staff.email,
+    id: staff.id,
+    isAdmin: staff.isAdmin,
+    type: staff.type,
   }, process.env.SECRET, { expiresIn: '1h' });
-  it('should be able to signup a staff with the correct details', (done) => {
+  it('should be able to signup a staff with the correct details', () => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send('x-access-token', staffToken)
-      .send({
-        firstName: 'chinonso',
-        lastName: 'calix',
-        email: 'staff1@gmail.com',
-        password: 'u875',
-      })
+      .send(staff)
       .end((request, response) => {
         response.should.have.status(201);
         response.body.should.be.a('object');
         response.body.should.have.property('data');
-        done();
       });
   });
   const updatedAccount = {
