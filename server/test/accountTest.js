@@ -51,25 +51,22 @@ describe('All Account tests', () => {
     done();
   });
 
-  const staff = {
-    firstName: 'chinonso',
-    lastName: 'calix',
+  const staffToken = jwt.sign({
     email: 'staff1@gmail.com',
-    password: 1234,
+    id: 1,
     type: 'staff',
     isAdmin: true,
-  };
-  const staffToken = jwt.sign({
-    email: staff.email,
-    id: staff.id,
-    isAdmin: staff.isAdmin,
-    type: staff.type,
   }, process.env.SECRET, { expiresIn: '1h' });
   it('should be able to signup a staff with the correct details', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send('x-access-token', staffToken)
-      .send(staff)
+      .send({
+        firstName: 'chinonso',
+        lastName: 'calix',
+        email: 'staff1@gmail.com',
+        password: 'u875',
+      })
       .end((request, response) => {
         response.should.have.status(201);
         response.body.should.be.a('object');
