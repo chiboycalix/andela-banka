@@ -25,16 +25,19 @@ class TransactionController {
     });
   }
 
-  static getTransaction(request, response) {
-    const { transactionId } = request.params;
-    for (let i = 0; i < transactions.length; i += 1) {
-      if (transactions[i].id === transactionId) {
-        return response.status(200).json({
-          status: 200,
-          data: transactions[i],
-        });
-      }
+  static async getTransaction(request, response) {
+    const checkTransac = await Transaction.checkTransac(request.params.transactionsId);
+    if (!checkTransac) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Transaction does not exist',
+      });
     }
+    const onetran = await Transaction.oneTransaction(request.params.transactionsId);
+    return response.status(200).json({
+      status: 200,
+      data: onetran.rows,
+    });
   }
 }
 

@@ -76,8 +76,22 @@ const credit = async (transactionDetails) => {
     ],
   ).catch(error => error.message);
 };
+const oneTransaction = id => db.query(
+  `SELECT * FROM transactions WHERE id = ${id}`,
+);
+
+const checkTransac = async (id) => {
+  const check = 'SELECT * FROM transactions WHERE id = $1 LIMIT 1';
+  const transId = await db.query(check, [id]).catch(error => error.message);
+  if (transId.rows[0]) {
+    return true;
+  }
+  return false;
+};
 
 export default {
   debit,
   credit,
+  checkTransac,
+  oneTransaction,
 };
