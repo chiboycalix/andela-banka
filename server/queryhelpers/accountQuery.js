@@ -51,10 +51,16 @@ const checkAccount = async (accountnumber) => {
   }
   return false;
 };
+const delAccount = accountnumber => db.query(
+  `DELETE FROM
+          accounts
+        WHERE accountnumber = '${accountnumber}'`,
+);
 
 
 export default {
   regAccount,
   changeAccount,
   checkAccount,
+  delAccount,
 };
