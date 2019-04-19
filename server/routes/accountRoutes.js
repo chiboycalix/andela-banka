@@ -12,5 +12,6 @@ router.patch('/:accountNum', accountValidations, AccountController.patchAccount)
 router.get('/', isStaff, AccountController.getAccounts);
 router.get('/:accountNum', isStaff, accountValidations, AccountController.getAccount);
 router.delete('/:accountNum', accountValidations, AccountController.deleteAccount);
+router.get('/:accountNum/transactions', isUser, AccountController.getAllTransactions);
 
 export default router;

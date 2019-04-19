@@ -57,10 +57,15 @@ const delAccount = accountnumber => db.query(
         WHERE accountnumber = '${accountnumber}'`,
 );
 
+const allTransactions = accountnumber => db.query(
+  `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
+);
+
 
 export default {
   regAccount,
   changeAccount,
   checkAccount,
   delAccount,
+  allTransactions,
 };

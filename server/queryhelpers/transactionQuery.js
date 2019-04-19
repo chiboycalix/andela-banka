@@ -76,6 +76,7 @@ const credit = async (transactionDetails) => {
     ],
   ).catch(error => error.message);
 };
+
 export default {
   debit,
   credit,
