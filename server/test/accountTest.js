@@ -15,7 +15,7 @@ chai.use(chaiHttp);
 let token;
 let token2;
 describe('GET /auth/login', () => {
-  it('it should log in the user', ((done) => {
+  it('it should log in the user', (() => {
     const loginDetails = {
       email: 'staff@gmail.com',
       password: 'password',
@@ -26,11 +26,10 @@ describe('GET /auth/login', () => {
       .end((err, res) => {
         res.should.have.status(200);
         token = res.body.data[0].token;
-        done(err);
       });
   }));
 
-  it('it should log in the user', ((done) => {
+  it('it should log in the user', (() => {
     const loginDetails = {
       email: 'client@gmail.com',
       password: 'password',
@@ -41,7 +40,6 @@ describe('GET /auth/login', () => {
       .end((err, res) => {
         res.should.have.status(200);
         token2 = res.body.data[0].token;
-        done(err);
       });
   }));
 });
@@ -52,7 +50,7 @@ describe('create account', () => {
     email: 'staff@gmail.com',
     password: 'password',
   }, process.env.SECRET, { expiresIn: '1h' });
-  it('it should create new account', ((done) => {
+  it('it should create new account', (() => {
     const account = {
       id: 1,
       accountNumber: '0114276912',
@@ -68,13 +66,12 @@ describe('create account', () => {
       .set('Authorization', `Bearer ${chi}`)
       .end((err, res) => {
         res.should.have.status(201);
-        done(err);
       });
   }));
 });
 
 describe('PATCH /account/', () => {
-  it('it should edit an account', ((done) => {
+  it('it should edit an account', (() => {
     const account = {
       id: 1,
       accountNumber: '0114276912',
@@ -94,7 +91,6 @@ describe('PATCH /account/', () => {
       .set('Authorization', `Bearer ${chi}`)
       .end((err, res) => {
         res.should.have.status(404);
-        done(err);
       });
   }));
   // it('it should return 401', ((done) => {

@@ -14,6 +14,7 @@ class AccountController {
     return response.status(201).json({
       status: 201,
       data: account.rows,
+      message: 'Account created successfully',
     });
   }
 
@@ -29,7 +30,8 @@ class AccountController {
     const account = await Account.changeAccount(request.body);
     return response.status(200).json({
       status: 200,
-      data: account.rows.length !== 0 ? account.rows : 'Account does not exist',
+      data: account.rows,
+      message: 'Account edited',
     });
   }
 
