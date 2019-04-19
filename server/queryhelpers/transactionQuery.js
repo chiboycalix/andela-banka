@@ -42,7 +42,41 @@ const debit = async (transactionDetails) => {
   ).catch(error => error.message);
 };
 
+const credit = async (transactionDetails) => {
+  const {
+    transactionType, accountnumber, cashier, amount,
+  } = transactionDetails;
+  const createdon = new Date();
+  const account = await db.query(
+    `SELECT * FROM accounts WHERE accountnumber = ${accountnumber}`,
+  );
+  const oldbalance = account.rows[0].balance;
+  const accountbalance = oldbalance + amount;
 
+  await db.query(
+    `UPDATE accounts SET balance = $1 WHERE accountnumber = ${accountnumber}`,
+    [
+      accountbalance,
+    ],
+  );
+  return db.query(
+    `INSERT INTO
+          transactions(createdon, type, accountnumber, cashier, amount, oldbalance, newbalance)
+      VALUES
+          ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING id, accountnumber, amount, cashier, type, newbalance`,
+    [
+      createdon,
+      transactionType,
+      accountnumber,
+      cashier,
+      amount,
+      oldbalance,
+      accountbalance,
+    ],
+  ).catch(error => error.message);
+};
 export default {
   debit,
+  credit,
 };
