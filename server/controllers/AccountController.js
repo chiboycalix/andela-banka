@@ -60,17 +60,18 @@ class AccountController {
     });
   }
 
-  static deleteAccount(request, response) {
-    const { accountNum } = request.params;
-    for (let i = 0; i < accounts.length; i += 1) {
-      if (accounts[i].accountNumber === accountNum) {
-        accounts.splice(accounts[i].id - 1, 1);
-        return response.status(200).json({
-          status: 200,
-          message: 'Account successfully deleted',
-        });
-      }
+  static async deleteAccount(request, response) {
+    const checkAccount = await Account.checkAccount(request.params.accountNum);
+    if (!checkAccount) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Account does not exist',
+      });
     }
+    Account.delAccount(request.params.accountNum).then(() => response.status(200).json({
+      status: 200,
+      message: 'Account deleted successfully',
+    }));
   }
 }
 
