@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post('/:accountNum/debit', isUser, TransactionController.debitAccount);
 router.post('/:accountNum/credit', isUser, TransactionController.creditAccount);
-router.get('/:accountNum/transactions/:transactionsId', TransactionController.getTransaction);
+router.get('/:transactionsId', TransactionController.getTransaction);
 
 export default router;
