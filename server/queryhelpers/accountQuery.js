@@ -31,7 +31,30 @@ const regAccount = (accountDetails) => {
   ).catch(error => error.message);
 };
 
+const changeAccount = (accountDetails) => {
+  const { status, accountnumber } = accountDetails;
+  return db.query(
+    `UPDATE accounts
+     SET status = $1 WHERE accountnumber = $2 RETURNING status`,
+    [
+      status,
+      accountnumber,
+    ],
+  ).catch(error => error.message);
+};
+
+const checkAccount = async (accountnumber) => {
+  const check = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
+  const accNum = await db.query(check, [accountnumber]).catch(error => error.message);
+  if (accNum.rows[0]) {
+    return true;
+  }
+  return false;
+};
+
 
 export default {
   regAccount,
+  changeAccount,
+  checkAccount,
 };

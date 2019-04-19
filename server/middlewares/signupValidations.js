@@ -77,12 +77,12 @@ const signupValidation = (request, response, next) => {
       error: 'password is required',
     });
   }
-  if (!password.match(/[^\s-]/)) {
-    return response.status(400).json({
-      status: 400,
-      error: 'Spaces are not allowed',
-    });
-  }
+  // if (!password.match(/[^\s-]/)) {
+  //   return response.status(400).json({
+  //     status: 400,
+  //     error: 'Spaces are not allowed',
+  //   });
+  // }
   next();
 };
 
