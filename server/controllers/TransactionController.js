@@ -25,16 +25,6 @@ class TransactionController {
     });
   }
 
-
-  static getAllTransactions(request, response) {
-    const { accountNum } = request.params;
-    const transaction = transactions.filter(transac => transac.accountNumber === accountNum);
-    return response.status(200).json({
-      status: 200,
-      data: transaction,
-    });
-  }
-
   static getTransaction(request, response) {
     const { transactionId } = request.params;
     for (let i = 0; i < transactions.length; i += 1) {

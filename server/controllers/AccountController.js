@@ -53,6 +53,15 @@ class AccountController {
     }
   }
 
+  static async getAllTransactions(request, response) {
+    // eslint-disable-next-line max-len
+    const alltran = await Account.allTransactions(request.params.accountNum);
+    return response.status(200).json({
+      status: 200,
+      data: alltran.rows,
+    });
+  }
+
   static getAccounts(request, response) {
     return response.status(200).json({
       status: 200,
