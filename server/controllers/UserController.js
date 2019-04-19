@@ -20,6 +20,7 @@ class UserController {
       status: 201,
       token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '1h' }),
       data: user.rows,
+      message: 'successfully signed up user',
     });
   }
 
@@ -37,6 +38,7 @@ class UserController {
       status: 200,
       token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '1h' }),
       data: login.rows,
+      message: 'login successfull',
     });
   }
 }
