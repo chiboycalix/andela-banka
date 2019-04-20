@@ -1,5 +1,3 @@
-import accounts from '../db/accounts';
-import transactions from '../db/transactions';
 import Transaction from '../queryhelpers/transactionQuery';
 
 class TransactionController {

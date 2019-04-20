@@ -1,20 +1,17 @@
-/* eslint-disable no-restricted-globals */
-import accounts from '../db/accounts';
 import db from '../db/index';
 
 const isValidTransactions = async (request, response, next) => {
   const { amount } = request.body;
+  const { accountNum } = request.params;
   const bal = await db.query(
-    `SELECT * FROM accounts WHERE balance = ${amount}`,
+    `SELECT * FROM accounts WHERE accountnumber = ${accountNum}`,
   );
-  console.log(bal.rows);
-  // if (amount > bal) {
-  //   return response.status(400).json({
-  //     status: 400,
-  //     error: 'insuffff',
-  //   });
-  // }
-
+  if (amount > bal.rows[0].balance) {
+    return response.status(400).json({
+      status: 400,
+      error: 'Insufficient fund',
+    });
+  }
   next();
 };
 

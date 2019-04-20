@@ -41,6 +41,14 @@ class UserController {
       message: 'login successfull',
     });
   }
+
+  static async getAccounts(request, response) {
+    const account = await User.allAccounts();
+    return response.status(200).json({
+      status: 200,
+      data: account.rows,
+    });
+  }
 }
 
 export default UserController;
