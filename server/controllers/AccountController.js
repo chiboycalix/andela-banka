@@ -1,4 +1,5 @@
 import Account from '../queryhelpers/accountQuery';
+import db from '../db/index';
 
 
 class AccountController {
@@ -56,6 +57,14 @@ class AccountController {
     });
   }
 
+  static async getActive(request, response) {
+    console.log(request);
+    const account = Account.activeAccounts();
+    return response.status(200).json({
+      data: account,
+    });
+  }
+
   static async getAccounts(request, response) {
     const account = await Account.allAccounts();
     return response.status(200).json({
@@ -63,6 +72,7 @@ class AccountController {
       data: account.rows,
     });
   }
+
 
   static async deleteAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);

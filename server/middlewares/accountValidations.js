@@ -7,7 +7,7 @@ const isValidAccount = (request, response, next) => {
     if (isNaN(parseFloat(accountNum, 10))) {
       return response.status(400).json({
         status: 400,
-        error: 'Bad request',
+        error: 'Bad request 123',
       });
     }
     if (accountNum.toString().length !== 10) {

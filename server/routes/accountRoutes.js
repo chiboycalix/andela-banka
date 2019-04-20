@@ -7,11 +7,11 @@ import accountValidations from '../middlewares/accountValidations';
 
 const router = express.Router();
 
+router.get('active/accounts/', isUser, AccountController.getActive);
 router.post('/', isUser, AccountController.createAccount);
 router.patch('/:accountNum', isUser, accountValidations, AccountController.patchAccount);
 router.get('/', isUser, AccountController.getAccounts);
 router.get('/:accountNum', isUser, accountValidations, AccountController.getAccount);
 router.delete('/:accountNum', isUser, accountValidations, AccountController.deleteAccount);
 router.get('/:accountNum/transactions', isUser, AccountController.getAllTransactions);
-
 export default router;

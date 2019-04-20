@@ -71,6 +71,13 @@ const oneAccount = accountnumber => db.query(
         WHERE accountnumber = '${accountnumber}'`,
 ).catch(error => error.message);
 
+const activeAccounts = async (active) => {
+  const results = await db.query(
+    `SELECT * FROM accounts WHERE status = ${active}`,
+  );
+  return results;
+};
+
 export default {
   regAccount,
   changeAccount,
@@ -79,4 +86,5 @@ export default {
   allTransactions,
   allAccounts,
   oneAccount,
+  activeAccounts,
 };
