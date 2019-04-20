@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-globals */
 import accounts from '../db/accounts';
-import users from '../db/users';
 import Account from '../queryhelpers/accountQuery';
 
 
@@ -62,10 +61,11 @@ class AccountController {
     });
   }
 
-  static getAccounts(request, response) {
+  static async getAccounts(request, response) {
+    const account = await Account.allAccounts();
     return response.status(200).json({
       status: 200,
-      data: accounts,
+      data: account.rows,
     });
   }
 
