@@ -65,6 +65,11 @@ const allAccounts = () => db.query(
   'SELECT * FROM accounts',
 ).catch(error => error.message);
 
+const oneAccount = accountnumber => db.query(
+  `SELECT * FROM
+          accounts
+        WHERE accountnumber = '${accountnumber}'`,
+).catch(error => error.message);
 
 export default {
   regAccount,
@@ -73,4 +78,5 @@ export default {
   delAccount,
   allTransactions,
   allAccounts,
+  oneAccount,
 };

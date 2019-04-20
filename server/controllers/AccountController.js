@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-import accounts from '../db/accounts';
 import Account from '../queryhelpers/accountQuery';
 
 
@@ -34,22 +32,19 @@ class AccountController {
     });
   }
 
-  static getAccount(request, response) {
-    const { accountNum } = request.params;
-    const { id } = request.userData;
-    for (let i = 0; i < accounts.length; i += 1) {
-      if (accounts[i].accountNumber === accountNum) {
-        return response.status(200).json({
-          status: 200,
-          data: {
-            userId: id,
-            accountNum,
-            status: accounts[i].status,
-            balance: accounts[i].balance,
-          },
-        });
-      }
+  static async getAccount(request, response) {
+    const checkAccount = await Account.checkAccount(request.params.accountNum);
+    if (!checkAccount) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Account does not exist',
+      });
     }
+    const account = await Account.oneAccount(request.params.accountNum)
+    return response.status(200).json({
+      status: 200,
+      data: account.rows,
+    });
   }
 
   static async getAllTransactions(request, response) {
@@ -77,10 +72,11 @@ class AccountController {
         error: 'Account does not exist',
       });
     }
-    Account.delAccount(request.params.accountNum).then(() => response.status(200).json({
+    await Account.delAccount(request.params.accountNum);
+    return response.status(200).json({
       status: 200,
       message: 'Account deleted successfully',
-    }));
+    });
   }
 }
 
