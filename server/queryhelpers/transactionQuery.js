@@ -89,6 +89,7 @@ const checkTransac = async (id) => {
   return false;
 };
 
+
 export default {
   debit,
   credit,

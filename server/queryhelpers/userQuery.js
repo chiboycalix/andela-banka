@@ -41,8 +41,13 @@ const loginUser = (userDetails) => {
   ).catch(error => error.message);
 };
 
+const allAccounts = () => db.query(
+  'SELECT * FROM accounts',
+).catch(error => error.message);
+
 export default {
   createUser,
   checkEmail,
   loginUser,
+  allAccounts,
 };
