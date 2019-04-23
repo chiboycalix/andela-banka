@@ -32,7 +32,7 @@ You can find the template at [https://www.pivotaltracker.com/n/projects/2322003]
 
 
 ### API Deployment
-API is deployed at [https://andela-banka.herokuapp.com](https://andela-banka.herokuapp.com)
+API is deployed at [https://banka-challenge-3.herokuapp.com](https://andela-banka.herokuapp.com)
 
 ## Technologies
 
