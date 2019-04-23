@@ -4,7 +4,6 @@ import isStaff from '../middlewares/isStaff';
 import isUser from '../middlewares/isUser';
 import isValidTransaction from '../middlewares/debitValidation';
 import accountValidations from '../middlewares/accountValidations';
-import isValidTran from '../middlewares/transValid';
 
 const router = express.Router();
 
