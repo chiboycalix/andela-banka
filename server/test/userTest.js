@@ -3,7 +3,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 import server from '../app';
 
 dotenv.config();
@@ -290,18 +289,18 @@ describe('signup tests', () => {
 });
 
 describe('login tests', () => {
-  it('should log users in with the right credentials', () => {
-    const loginDetails = {
-      email: 'chi@gmail.com',
-      password: 'chi',
-    };
-    chai.request(server)
-      .post('api/v1/auth/login')
-      .send(loginDetails)
-      .end((error, response) => {
-        response.should.have.status(200);
-      });
-  });
+  // it('should log users in with the right credentials', () => {
+  //   const loginDetails = {
+  //     email: 'chi@gmail.com',
+  //     password: 'chi',
+  //   };
+  //   chai.request(server)
+  //     .post('api/v1/auth/login')
+  //     .send(loginDetails)
+  //     .end((error, response) => {
+  //       response.should.have.status(200);
+  //     });
+  // });
 
   it('should not login a user without an email', () => {
     const noEmail = {
