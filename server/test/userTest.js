@@ -288,58 +288,58 @@ describe('signup tests', () => {
   });
 });
 
-describe('login tests', () => {
-  // it('should log users in with the right credentials', () => {
-  //   const loginDetails = {
-  //     email: 'chi@gmail.com',
-  //     password: 'chi',
-  //   };
-  //   chai.request(server)
-  //     .post('api/v1/auth/login')
-  //     .send(loginDetails)
-  //     .end((error, response) => {
-  //       response.should.have.status(200);
-  //     });
-  // });
+// describe('login tests', () => {
+//   // it('should log users in with the right credentials', () => {
+//   //   const loginDetails = {
+//   //     email: 'chi@gmail.com',
+//   //     password: 'chi',
+//   //   };
+//   //   chai.request(server)
+//   //     .post('api/v1/auth/login')
+//   //     .send(loginDetails)
+//   //     .end((error, response) => {
+//   //       response.should.have.status(200);
+//   //     });
+//   // });
 
-  it('should not login a user without an email', () => {
-    const noEmail = {
-      email: '',
-      password: 'chi',
-    };
-    chai.request(server)
-      .post('api/v1/auth/login')
-      .send(noEmail)
-      .end((error, response) => {
-        response.should.have.status(400);
-        response.body.should.have.property('error');
-        response.body.error.should.equal('Please provide a valid email');
-      });
-  });
+//   it('should not login a user without an email', () => {
+//     const noEmail = {
+//       email: '',
+//       password: 'chi',
+//     };
+//     chai.request(server)
+//       .post('api/v1/auth/login')
+//       .send(noEmail)
+//       .end((error, response) => {
+//         response.should.have.status(400);
+//         response.body.should.have.property('error');
+//         response.body.error.should.equal('Please provide a valid email');
+//       });
+//   });
 
-  it('should not login a user without a password', () => {
-    const noPass = {
-      email: 'chi@gmail.com',
-      password: '',
-    };
-    chai.request(server)
-      .post('api/v1/auth/login')
-      .send(noPass)
-      .end((error, response) => {
-        response.should.have.status(400);
-      });
-  });
+//   it('should not login a user without a password', () => {
+//     const noPass = {
+//       email: 'chi@gmail.com',
+//       password: '',
+//     };
+//     chai.request(server)
+//       .post('api/v1/auth/login')
+//       .send(noPass)
+//       .end((error, response) => {
+//         response.should.have.status(400);
+//       });
+//   });
 
-  it('should not login a user with invalid email', () => {
-    const invalidEmail = {
-      email: 'igwechinonso77gmail.com',
-      password: 1234,
-    };
-    chai.request(server)
-      .post('api/v1/auth/login')
-      .send(invalidEmail)
-      .end((error, response) => {
-        response.should.have.status(400);
-      });
-  });
-});
+//   it('should not login a user with invalid email', () => {
+//     const invalidEmail = {
+//       email: 'igwechinonso77gmail.com',
+//       password: 1234,
+//     };
+//     chai.request(server)
+//       .post('api/v1/auth/login')
+//       .send(invalidEmail)
+//       .end((error, response) => {
+//         response.should.have.status(400);
+//       });
+//   });
+// });
