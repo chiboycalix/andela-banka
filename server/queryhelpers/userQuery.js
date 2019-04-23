@@ -8,7 +8,8 @@ const createUser = (userDetails) => {
     email,
     password,
   } = userDetails;
-  const hashedPassword = bcrypt.hashSync(password, 10);
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salt);
   return db.query(
     `INSERT INTO
         users(firstName, lastName, email, password) 
@@ -37,7 +38,7 @@ const checkEmail = async (email) => {
 const loginUser = (userDetails) => {
   const { email } = userDetails;
   return db.query(
-    'SELECT id, email, password, firstName, lastName FROM users WHERE email = $1 LIMIT 1', [email],
+    'SELECT id, email, password, firstName, lastName, isAdmin, type FROM users WHERE email = $1 LIMIT 1', [email],
   ).catch(error => error.message);
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import db from '../db/index';
 
 db.query(
@@ -8,7 +9,7 @@ db.query(
     email character varying(100),
     password character varying(100),
     isadmin boolean DEFAULT false,
-    type character varying(100) DEFAULT 'client'::character varying,
+    type character varying(100) DEFAULT \'client\'::character varying,
     CONSTRAINT users_pkey PRIMARY KEY (id)
   )`,
   console.log('Users Table created'),
@@ -23,7 +24,7 @@ db.query(
     balance double precision,
     type character varying(100),
     owner integer,
-    status character varying(100) DEFAULT 'draft'::character varying,
+    status character varying(100) DEFAULT \'active\'::character varying,
     createdon timestamp without time zone,
     CONSTRAINT accounts_pkey PRIMARY KEY (id),
     CONSTRAINT accounts_owner_fkey FOREIGN KEY (owner)

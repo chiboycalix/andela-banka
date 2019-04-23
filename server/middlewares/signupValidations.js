@@ -11,6 +11,12 @@ const signupValidation = (request, response, next) => {
       error: 'firstname is required',
     });
   }
+  if (!firstName.match(/^[a-zA-Z0-9]*$/gm)) {
+    return response.status(400).json({
+      status: 400,
+      error: 'Spaces are not allowed',
+    });
+  }
   if (!firstName.match(/[^\s-]/)) {
     return response.status(400).json({
       status: 400,
@@ -36,6 +42,12 @@ const signupValidation = (request, response, next) => {
     });
   }
   if (!lastName.match(/[^\s-]/)) {
+    return response.status(400).json({
+      status: 400,
+      error: 'Spaces are not allowed',
+    });
+  }
+  if (!lastName.match(/^[a-zA-Z0-9]*$/gm)) {
     return response.status(400).json({
       status: 400,
       error: 'Spaces are not allowed',
@@ -77,12 +89,6 @@ const signupValidation = (request, response, next) => {
       error: 'password is required',
     });
   }
-  // if (!password.match(/[^\s-]/)) {
-  //   return response.status(400).json({
-  //     status: 400,
-  //     error: 'Spaces are not allowed',
-  //   });
-  // }
   next();
 };
 

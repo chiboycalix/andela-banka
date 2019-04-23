@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import User from '../queryhelpers/userQuery';
 
 dotenv.config();
@@ -18,7 +19,7 @@ class UserController {
     const user = await User.createUser(request.body);
     return response.status(201).json({
       status: 201,
-      token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '1h' }),
+      token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '100h' }),
       data: user.rows,
       message: 'successfully signed up user',
     });
@@ -33,10 +34,18 @@ class UserController {
         error: 'Email does not exist',
       });
     }
+
     const login = await User.loginUser(request.body);
+    const pass = bcrypt.compareSync(request.body.password, login.rows[0].password);
+    if (!pass) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Password does not match',
+      });
+    }
     return response.status(200).json({
       status: 200,
-      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '1h' }),
+      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '100h' }),
       data: login.rows,
       message: 'login successfull',
     });

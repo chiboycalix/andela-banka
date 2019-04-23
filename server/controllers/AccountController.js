@@ -40,7 +40,7 @@ class AccountController {
         error: 'Account does not exist',
       });
     }
-    const account = await Account.oneAccount(request.params.accountNum)
+    const account = await Account.oneAccount(request.params.accountNum);
     return response.status(200).json({
       status: 200,
       data: account.rows,
@@ -48,7 +48,6 @@ class AccountController {
   }
 
   static async getAllTransactions(request, response) {
-    // eslint-disable-next-line max-len
     const alltran = await Account.allTransactions(request.params.accountNum);
     return response.status(200).json({
       status: 200,
@@ -57,12 +56,20 @@ class AccountController {
   }
 
   static async getAccounts(request, response) {
+    const active = await Account.getActive(request.query.status);
+    if (request.query.status) {
+      return response.status(200).json({
+        status: 200,
+        data: active.rows,
+      });
+    }
     const account = await Account.allAccounts();
     return response.status(200).json({
       status: 200,
       data: account.rows,
     });
   }
+
 
   static async deleteAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);

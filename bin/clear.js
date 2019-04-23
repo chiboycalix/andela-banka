@@ -1,2 +1,2 @@
 require('babel-register');
-require('../server/queryhelpers/clearDatabaseQuery');
+require('../server/migrations/clearTable');
