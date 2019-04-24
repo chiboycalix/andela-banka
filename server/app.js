@@ -24,7 +24,7 @@ app.get('/', (request, response) => {
 app.use('*', (request, response) => {
   return response.status(404).json({
     status: 404,
-    error: "404 NOT FOUND",
+    error: '404 NOT FOUND',
   });
 });
 

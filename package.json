@@ -4,7 +4,7 @@
   "description": "A light-weight Banking application",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test && mocha --require babel-core/register server/test/**/*.js --exit",
+    "test": "npm run cleartable && cross-env NODE_ENV=test && mocha --require babel-core/register server/test/**/*.js --exit",
     "start": "npm run migrate && cross-env NODE_ENV=development node bin/dev",
     "clean": "rm -rf dist",
     "build-dev": "npm run clean && mkdir dist && babel server -s -d dist && node bin/dev",
@@ -13,7 +13,7 @@
     "migrate": "cross-env NODE_ENV=development node bin/migrate",
     "cleartable": "cross-env NODE_ENV=development node bin/clear",
     "droptable": "cross-env NODE_ENV=development node bin/drop --exit",
-    "seed":"cross-env NODE_ENV=development node bin/seed --exit"
+    "seed": "cross-env NODE_ENV=development node bin/seed --exit"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
+    "password-hash": "^1.2.2",
     "pg": "^7.9.0"
   }
 }

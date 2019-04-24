@@ -36,7 +36,7 @@ class UserController {
     }
 
     const login = await User.loginUser(request.body);
-    const pass = bcrypt.compareSync(request.body.password, login.rows[0].password);
+    const pass = await bcrypt.compareSync(request.body.password, login.rows[0].password);
     if (!pass) {
       return response.status(400).json({
         status: 400,
