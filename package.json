@@ -8,10 +8,10 @@
     "start": "npm run migrate && cross-env NODE_ENV=development node bin/dev",
     "clean": "rm -rf dist",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "migrate": "node bin/migrate",
-    "cleartable": "node bin/clear",
-    "droptable": "node bin/drop --exit",
-    "seed": "node bin/seed --exit"
+    "migrate": "babel-node bin/migrate",
+    "cleartable": "babel-node bin/clear",
+    "droptable": "babel-node bin/drop --exit",
+    "seed": "babel-node bin/seed --exit"
   },
   "repository": {
     "type": "git",
