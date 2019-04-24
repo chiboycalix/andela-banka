@@ -4,6 +4,10 @@ node_js:
 cache:
   directories:
     - "node_modules"
+
+services:
+  - postgresql
+
 after_success: npm run coverage
 # single test suite, non-parallel build.
 
@@ -11,18 +15,17 @@ env:
   global:
     # - CC_TEST_REPORTER_ID=15cacf1692e34e33bedddb59a974a5263f8f4861c5a294b1373093ec4ef4e50a
     - SECRET=15cacf1692e34e33bedddb59a974a5263f8f4861c5a294b1373093ec4ef4e50a
-    - NODE_ENV=test
-    - DATABASE_URL=postgres://ipdqiyjw:yza9WSaHrWILJ3OCeNskRkQ3wVbRaAQL@isilo.db.elephantsql.com:5432/ipdqiyjw
+    # - NODE_ENV=test
+    # - DATABASE_URL=postgres://ipdqiyjw:yza9WSaHrWILJ3OCeNskRkQ3wVbRaAQL@isilo.db.elephantsql.com:5432/ipdqiyjw
 language: node_js
 rvm:
   - 2.2.0
 before_script:
-  -psql -c 'CREATE DATABASE banka_test;' -U postgres
+  - psql -c 'CREATE DATABASE banka_test;' -U postgres
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-services:
-  -postgresql
+
 script:
   - nyc --reporter=lcov npm run test
 after_script:
