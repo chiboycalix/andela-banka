@@ -11,6 +11,8 @@ env:
   global:
     # - CC_TEST_REPORTER_ID=15cacf1692e34e33bedddb59a974a5263f8f4861c5a294b1373093ec4ef4e50a
     - SECRET=15cacf1692e34e33bedddb59a974a5263f8f4861c5a294b1373093ec4ef4e50a
+    - NODE_ENV=test
+    - DATABASE_URL=postgres://ipdqiyjw:yza9WSaHrWILJ3OCeNskRkQ3wVbRaAQL@isilo.db.elephantsql.com:5432/ipdqiyjw
 language: node_js
 rvm:
   - 2.2.0
