@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import db from '../db/index';
 
-const createUser = (userDetails) => {
+const createUser = async (userDetails) => {
   const {
     firstName,
     lastName,
@@ -10,7 +10,7 @@ const createUser = (userDetails) => {
   } = userDetails;
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(password, salt);
-  return db.query(
+  const user = await db.query(
     `INSERT INTO
         users(firstName, lastName, email, password) 
     VALUES
@@ -23,6 +23,7 @@ const createUser = (userDetails) => {
       hashedPassword,
     ],
   ).catch(error => error.message);
+  return user;
 };
 
 const checkEmail = async (email) => {
