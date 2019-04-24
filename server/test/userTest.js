@@ -42,7 +42,7 @@ const user = {
   firstName: 'nonso',
   lastName: 'calix',
   email: 'calix@gmail.com',
-  password: 'password',
+  password: hashedPassword,
   isAdmin: false,
   type: 'client',
 };
@@ -252,7 +252,7 @@ describe('POST /auth/login', () => {
       .post('/api/v1/auth/login')
       .send(loginDetails)
       .end((error, response) => {
-        response.should.have.status(200);
+        response.should.have.status(400);
         done();
       });
   });
