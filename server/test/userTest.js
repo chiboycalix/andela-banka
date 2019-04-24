@@ -41,7 +41,7 @@ const hashedPassword = passwordHash.generate('password');
 const user = {
   firstName: 'nonso',
   lastName: 'calix',
-  email: 'calix@gmail.com',
+  email: 'calix1@gmail.com',
   password: hashedPassword,
   isAdmin: false,
   type: 'client',
@@ -76,7 +76,7 @@ describe('POST api/v1/auth/signup', () => {
   const userWithoutFirstname = {
     firstName: '',
     lastName: 'calix',
-    email: 'calix@gmail.com',
+    email: 'calix2@gmail.com',
     password: hashedPassword,
     isAdmin: true,
     type: 'staff',
@@ -96,7 +96,7 @@ describe('POST api/v1/auth/signup', () => {
   const userWithoutLastname = {
     firstName: 'chinonso',
     lastName: '',
-    email: 'calix@gmail.com',
+    email: 'calix2@gmail.com',
     password: 'password',
     type: 'client',
     isAdmin: false,
@@ -153,7 +153,7 @@ describe('POST api/v1/auth/signup', () => {
   const userWithoutPassword = {
     firstName: 'chinonso',
     lastName: 'calix',
-    email: 'calix@gmail.com',
+    email: 'calix4@gmail.com',
     type: 'client',
     isAdmin: false,
   };
@@ -172,7 +172,7 @@ describe('POST api/v1/auth/signup', () => {
   const nanfirstname = {
     firstName: 123,
     lastName: 'calix',
-    email: 'calix@gmail.com',
+    email: 'calix5@gmail.com',
     password: 'password',
   };
   it('should not allow spaces', (done) => {
@@ -190,7 +190,7 @@ describe('POST api/v1/auth/signup', () => {
   const nanlastname = {
     firstName: 'nonso',
     lastName: 123,
-    email: 'calix@gmail.com',
+    email: 'calix6@gmail.com',
     password: 'password',
   };
   it('should not allow spaces', (done) => {
@@ -208,7 +208,7 @@ describe('POST api/v1/auth/signup', () => {
   const firstnameLength = {
     firstName: 'n',
     lastName: 'calix',
-    email: 'calix@gmail.com',
+    email: 'calix7@gmail.com',
     password: 'password',
   };
   it('first Name must be atleast 3 alphabets', (done) => {
@@ -226,7 +226,7 @@ describe('POST api/v1/auth/signup', () => {
   const lastnameLength = {
     firstName: 'nonso',
     lastName: 'c',
-    email: 'calix@gmail.com',
+    email: 'calix8@gmail.com',
     password: 'password',
   };
   it('last Name must be atleast 3 alphabets', (done) => {
@@ -245,7 +245,7 @@ describe('POST api/v1/auth/signup', () => {
 describe('POST /auth/login', () => {
   it('it should log in the user', (done) => {
     const loginDetails = {
-      email: 'calix@gmail.com',
+      email: 'calix1@gmail.com',
       password: 'password',
     };
     chai.request(server)
@@ -271,7 +271,7 @@ describe('POST /auth/login', () => {
   });
   it('it should not log in the user without password', (done) => {
     const loginDetails = {
-      email: 'calix@gmail.com',
+      email: 'calix9@gmail.com',
       password: '',
     };
     chai.request(server)
