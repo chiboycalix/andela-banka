@@ -1,6 +1,5 @@
 import Account from '../queryhelpers/accountQuery';
 
-
 class AccountController {
   static async createAccount(request, response) {
     request.body.owner = request.userData.id;
