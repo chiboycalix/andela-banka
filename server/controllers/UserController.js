@@ -1,58 +1,73 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import User from '../queryhelpers/userQuery';
 
 dotenv.config();
 
 
 class UserController {
-  // Signup function
   static async signup(request, response) {
     const check = await User.checkEmail(request.body.email).catch(error => error.message);
     if (check) {
       return response.status(409).json({
         status: 409,
-        error: 'email exist',
+        error: 'Invalid credentials',
       });
     }
     const user = await User.createUser(request.body);
+    const {
+      id, email, firstname, lastname, isadmin, type,
+    } = user.rows[0];
     return response.status(201).json({
       status: 201,
-      token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '100h' }),
-      data: user.rows,
+      token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '1h' }),
+      data: {
+        id, email, isadmin, type, firstname, lastname,
+      },
       message: 'successfully signed up user',
     });
   }
 
-  // Login function
   static async login(request, response) {
     const checkMail = await User.checkEmail(request.body.email);
     if (!checkMail) {
-      return response.status(404).json({
-        status: 404,
-        error: 'Email does not exist',
+      return response.status(400).json({
+        status: 400,
+        error: 'Invalid credentials',
       });
     }
 
     const login = await User.loginUser(request.body);
-    const pass = bcrypt.compareSync(request.body.password, login.rows[0].password);
-    if (!pass) {
+    const password = await bcrypt.compareSync(request.body.password, login.rows[0].password);
+    if (!password) {
       return response.status(400).json({
         status: 400,
-        error: 'Password does not match',
+        error: 'Invalid credentials',
       });
     }
+    const {
+      id, email, isadmin, type,
+    } = login.rows[0];
     return response.status(200).json({
       status: 200,
-      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '100h' }),
-      data: login.rows,
-      message: 'login successfull',
+      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '1h' }),
+      data: {
+        id, email, isadmin, type,
+      },
+      message: 'login successful',
     });
   }
 
   static async getAccounts(request, response) {
-    const account = await User.allAccounts();
+    const account = await User.allAccounts(request.params.userEmail);
+    const checkAccount = await User.checkAccount(request.params.userEmail);
+    if (!checkAccount) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Account does not exist',
+      });
+    }
     return response.status(200).json({
       status: 200,
       data: account.rows,

@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import db from '../db/index';
 
-const createUser = (userDetails) => {
+const createUser = async (userDetails) => {
   const {
     firstName,
     lastName,
@@ -10,7 +10,7 @@ const createUser = (userDetails) => {
   } = userDetails;
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(password, salt);
-  return db.query(
+  const user = await db.query(
     `INSERT INTO
         users(firstName, lastName, email, password) 
     VALUES
@@ -23,6 +23,7 @@ const createUser = (userDetails) => {
       hashedPassword,
     ],
   ).catch(error => error.message);
+  return user;
 };
 
 const checkEmail = async (email) => {
@@ -42,8 +43,17 @@ const loginUser = (userDetails) => {
   ).catch(error => error.message);
 };
 
-const allAccounts = () => db.query(
-  'SELECT * FROM accounts',
+const checkAccount = async (email) => {
+  const check = 'SELECT * FROM accounts WHERE email = $1 LIMIT 1';
+  const accNum = await db.query(check, [email]).catch(error => error.message);
+  if (accNum.rows[0]) {
+    return true;
+  }
+  return false;
+};
+
+const allAccounts = email => db.query(
+  `SELECT * FROM accounts WHERE email = '${email}'`,
 ).catch(error => error.message);
 
 export default {
@@ -51,4 +61,5 @@ export default {
   checkEmail,
   loginUser,
   allAccounts,
+  checkAccount,
 };

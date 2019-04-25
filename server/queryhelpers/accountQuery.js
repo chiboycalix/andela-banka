@@ -1,7 +1,6 @@
 import db from '../db/index';
 
-
-const regAccount = (accountDetails) => {
+const registerAccount = (accountDetails) => {
   const {
     type,
     balance,
@@ -51,37 +50,37 @@ const checkAccount = async (accountnumber) => {
   }
   return false;
 };
-const delAccount = accountnumber => db.query(
+const deleleAccount = accountnumber => db.query(
   `DELETE FROM
           accounts
         WHERE accountnumber = '${accountnumber}'`,
 );
 
-const allTransactions = accountnumber => db.query(
+const getAllTransactions = accountnumber => db.query(
   `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
 );
 
-const allAccounts = () => db.query(
+const getAllAccounts = () => db.query(
   'SELECT * FROM accounts',
 ).catch(error => error.message);
 
-const oneAccount = accountnumber => db.query(
+const getOneAccount = accountnumber => db.query(
   `SELECT * FROM
           accounts
         WHERE accountnumber = '${accountnumber}'`,
 ).catch(error => error.message);
 
-const getActive = active => db.query(
-  `SELECT * FROM accounts WHERE status = ${active}`,
+const getActiveAccounts = active => db.query(
+  `SELECT * FROM accounts WHERE status = '${active}'`,
 ).catch(error => error.message);
 
 export default {
-  regAccount,
+  registerAccount,
   changeAccount,
   checkAccount,
-  delAccount,
-  allTransactions,
-  allAccounts,
-  oneAccount,
-  getActive,
+  deleleAccount,
+  getAllTransactions,
+  getAllAccounts,
+  getOneAccount,
+  getActiveAccounts,
 };
