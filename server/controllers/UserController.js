@@ -32,8 +32,8 @@ class UserController {
   static async login(request, response) {
     const checkMail = await User.checkEmail(request.body.email);
     if (!checkMail) {
-      return response.status(404).json({
-        status: 404,
+      return response.status(400).json({
+        status: 400,
         error: 'Invalid credentials',
       });
     }

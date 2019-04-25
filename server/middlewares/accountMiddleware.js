@@ -71,7 +71,7 @@ class Middleware {
     }
     next();
   }
-
+  
   static async isValidId(request, response, next) {
     const { transactionsId } = request.params;
     const positiveInteger = RegExp(/^\d*\.?\d+$/);

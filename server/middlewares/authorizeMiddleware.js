@@ -11,12 +11,6 @@ class Middleware {
       request.userData = decoded;
       next();
     } catch (error) {
-      if (error.message === 'invalid token') {
-        return response.status(401).json({
-          status: 401,
-          error: 'Unauthorized',
-        });
-      }
       return response.status(500).json({
         status: 500,
         error: 'Internal Server Error',
