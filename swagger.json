@@ -53,10 +53,10 @@
             }
           },
           "400": {
-            "description": "Missing required parameter"
+            "description": "Bad request"
           },
           "500": {
-            "description": "server Error"
+            "description": "Internal server Error"
           }
         }
       }
@@ -79,7 +79,7 @@
         },
         "responses": {
           "200": {
-            "description": "successfully operation",
+            "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
@@ -89,10 +89,10 @@
             }
           },
           "400": {
-            "description": "Missing required parameter"
+            "description": "Bad request"
           },
           "500": {
-            "description": "server Error"
+            "description": "Internal server Error"
           }
         }
       }
@@ -130,10 +130,10 @@
             }
           },
           "400": {
-            "description": "Missing required parameter"
+            "description": "Bad request"
           },
           "500": {
-            "description": "server Error"
+            "description": "Internal server Error"
           }
         }
       }
@@ -258,7 +258,7 @@
             "description": "Account not found"
           },
           "500": {
-            "description": "Server Error"
+            "description": "Internal Server Error"
           }
         }
       }
@@ -343,10 +343,10 @@
             }
           },
           "400": {
-            "description": "Missing required parameter"
+            "description": "Bad request"
           },
           "500": {
-            "description": "server Error"
+            "description": "Internal server Error"
           }
         }
       }
@@ -386,10 +386,10 @@
             }
           },
           "400": {
-            "description": "Missing required parameter"
+            "description": "Bad request"
           },
           "500": {
-            "description": "server Error"
+            "description": "Internal server Error"
           }
         }
       }
@@ -475,7 +475,7 @@
             }
           },
           "401": {
-            "description": "access denied, no token provided"
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Transaction not found"
