@@ -363,7 +363,7 @@ describe('POST /auth/login', () => {
       .post('/api/v1/auth/login')
       .send(loginDetails)
       .end((error, response) => {
-        response.should.have.status(404);
+        response.should.have.status(400);
         response.body.should.have.property('error');
         response.body.error.should.equal('Invalid credentials');
         done();
