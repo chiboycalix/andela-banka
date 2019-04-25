@@ -12,7 +12,7 @@ const { signupValidations, loginValidations } = authenticateMiddleware;
 export default (router) => {
   router.get('/', (request, response) => response.status(200).json({
     status: 200,
-    message: 'Welcome to banka, to view the API documentation, visit https://banka-challenge-3.herokuapp.com/swagger',
+    message: 'Welcome to banka, to view the API documentation, visit https://banka-challenge-3.herokuapp.com/api/v1/docs',
   }));
   
   router.post('/api/v1/transactions/:accountNum/debit', staffData, accountValidation, debitValidation, TransactionController.debitAccount);
