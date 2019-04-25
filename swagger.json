@@ -61,7 +61,7 @@
         }
       }
     },
-    "/auth/signin": {
+    "/auth/login": {
       "post": {
         "tags": [
           "User"
@@ -138,7 +138,7 @@
         }
       }
     },
-    "/account/{accountNumber}": {
+    "/accounts/{accountNumber}": {
       "patch": {
         "tags": [
           "Account"
