@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerdoc));
+app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerdoc));
 routes(app);
 
 const PORT = process.env.PORT || 3000;
