@@ -1,20 +1,16 @@
-/* eslint-disable no-useless-escape */
 import db from '../db/index';
 
-db.query(
-  `CREATE TABLE IF NOT EXISTS users(
-    id serial NOT NULL,
-    firstname character varying(100),
-    lastname character varying(100),
-    email character varying(100),
-    password character varying(100),
-    isadmin boolean DEFAULT false,
-    type character varying(100) DEFAULT \'client\'::character varying,
-    CONSTRAINT users_pkey PRIMARY KEY (id)
-  )`,
-  console.log('Users Table created'),
-).then(() => db.query(
-  `CREATE TABLE accounts
+const createUser = `CREATE TABLE IF NOT EXISTS users(
+      id serial NOT NULL,
+      firstname character varying(100),
+      lastname character varying(100),
+      email character varying(100),
+      password character varying(100),
+      isadmin boolean DEFAULT false,
+      type character varying(100) DEFAULT 'client'::character varying,
+      CONSTRAINT users_pkey PRIMARY KEY (id)
+    )`;
+const createAccount = `CREATE TABLE IF NOT EXISTS accounts
   (
     id serial NOT NULL,
     firstname character varying(100),
@@ -24,16 +20,14 @@ db.query(
     balance double precision,
     type character varying(100),
     owner integer,
-    status character varying(100) DEFAULT \'active\'::character varying,
+    status character varying(100) DEFAULT 'active'::character varying,
     createdon timestamp without time zone,
     CONSTRAINT accounts_pkey PRIMARY KEY (id),
     CONSTRAINT accounts_owner_fkey FOREIGN KEY (owner)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE NO ACTION ON DELETE NO ACTION
-  )`,
-  console.log('Accounts Table created'),
-).then(() => db.query(
-  `CREATE TABLE transactions
+  )`;
+const createTransaction = `CREATE TABLE IF NOT EXISTS transactions
   (
     id serial NOT NULL,
     createdon timestamp without time zone,
@@ -47,6 +41,5 @@ db.query(
     CONSTRAINT transactions_cashier_fkey FOREIGN KEY (cashier)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE NO ACTION ON DELETE NO ACTION
-  )`,
-  console.log('Transactions Table created'),
-))).catch(error => error.message);
+  )`;
+db.query(`${createUser};${createAccount};${createTransaction}`, console.log('Tables created'));

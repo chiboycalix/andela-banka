@@ -7,15 +7,26 @@ class AccountController {
     request.body.firstname = request.userData.firstname;
     request.body.lastname = request.userData.lastname;
     request.body.email = request.userData.email;
-    const account = await Account.regAccount(request.body);
+    const account = await Account.registerAccount(request.body);
+    const {
+      firstname, lastname, email, accountnumber, balance, type, owner,
+    } = account.rows[0];
     return response.status(201).json({
       status: 201,
-      data: account.rows,
+      data: {
+        firstname,
+        lastname,
+        email,
+        owner,
+        accountNumber: accountnumber,
+        openingBalance: balance,
+        type,
+      },
       message: 'Account created successfully',
     });
   }
 
-  static async patchAccount(request, response) {
+  static async editAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {
@@ -40,30 +51,47 @@ class AccountController {
         error: 'Account does not exist',
       });
     }
-    const account = await Account.oneAccount(request.params.accountNum);
+    const account = await Account.getOneAccount(request.params.accountNum);
+    const {
+      createdon, id, owner, email, type, accountnumber, balance,
+    } = account.rows[0];
     return response.status(200).json({
       status: 200,
-      data: account.rows,
+      data: {
+        id,
+        createdon,
+        ownerEmail: email,
+        ownerId: owner,
+        type,
+        accountNumber: accountnumber,
+        balance,
+      },
     });
   }
 
   static async getAllTransactions(request, response) {
-    const alltran = await Account.allTransactions(request.params.accountNum);
+    const alltransactions = await Account.getAllTransactions(request.params.accountNum);
     return response.status(200).json({
       status: 200,
-      data: alltran.rows,
+      data: alltransactions.rows,
     });
   }
 
   static async getAccounts(request, response) {
-    const active = await Account.getActive(request.query.status);
+    const active = await Account.getActiveAccounts(request.query.status);
+    if (active.rows.length === 0) {
+      return response.status(200).json({
+        status: 200,
+        message: `No ${request.query.status} account`
+      });
+    }
     if (request.query.status) {
       return response.status(200).json({
         status: 200,
         data: active.rows,
       });
     }
-    const account = await Account.allAccounts();
+    const account = await Account.getAllAccounts();
     return response.status(200).json({
       status: 200,
       data: account.rows,
@@ -79,7 +107,7 @@ class AccountController {
         error: 'Account does not exist',
       });
     }
-    await Account.delAccount(request.params.accountNum);
+    await Account.deleleAccount(request.params.accountNum);
     return response.status(200).json({
       status: 200,
       message: 'Account deleted successfully',

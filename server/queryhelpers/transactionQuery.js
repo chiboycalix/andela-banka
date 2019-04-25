@@ -1,20 +1,16 @@
-/* eslint-disable max-len */
 import db from '../db/index';
 
 const debit = async (transactionDetails) => {
-  // get amount and transactiontype from request.body, get cashier from request.userData, get accountnumber from request.params
   const {
     transactionType, accountnumber, cashier, amount,
   } = transactionDetails;
   const createdon = new Date();
-  // get the accountnumber details from the req.params
   const account = await db.query(
     `SELECT * FROM accounts WHERE accountnumber = ${accountnumber}`,
   );
   const oldbalance = account.rows[0].balance;
   const accountbalance = oldbalance - amount;
 
-  // update the balance to be equal to the new balance after the first operation
   await db.query(
     `UPDATE accounts SET balance = $1 WHERE accountnumber = ${accountnumber}`,
     [
@@ -23,7 +19,6 @@ const debit = async (transactionDetails) => {
   );
 
 
-  // insert into the the transactions table
   return db.query(
     `INSERT INTO
           transactions(createdon, type, accountnumber, cashier, amount, oldbalance, newbalance)
@@ -80,10 +75,19 @@ const oneTransaction = id => db.query(
   `SELECT * FROM transactions WHERE id = ${id}`,
 );
 
-const checkTransac = async (id) => {
+const checkTransaction = async (id) => {
   const check = 'SELECT * FROM transactions WHERE id = $1 LIMIT 1';
   const transId = await db.query(check, [id]).catch(error => error.message);
   if (transId.rows[0]) {
+    return true;
+  }
+  return false;
+};
+
+const checkAccountNumber = async (accountnumber) => {
+  const check = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
+  const accNum = await db.query(check, [accountnumber]).catch(error => error.message);
+  if (accNum.rows[0]) {
     return true;
   }
   return false;
@@ -93,6 +97,7 @@ const checkTransac = async (id) => {
 export default {
   debit,
   credit,
-  checkTransac,
+  checkTransaction,
   oneTransaction,
+  checkAccountNumber
 };

@@ -4,11 +4,11 @@ import connectionString from './dbConfig';
 
 dotenv.config();
 
-const env = process.env.ENV_TEST;
+const env = process.env.NODE_ENV;
 console.log(env);
 let connection;
 
-if (env) {
+if (process.env.ENV_TEST) {
   connection = connectionString.test;
 } else {
   connection = connectionString.development;

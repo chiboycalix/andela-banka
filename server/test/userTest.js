@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import 'babel-polyfill';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
@@ -10,9 +9,9 @@ import server from '../app';
 dotenv.config();
 
 chai.use(chaiHttp);
-// const { expect } = chai;
-// const baseUrl = 'api/v1/auth';
 const should = chai.should();
+
+let staffToken;
 
 describe('server.js tests', () => {
   it('should return welcome to banka when you visit the hoempage', (done) => {
@@ -130,6 +129,25 @@ describe('POST api/v1/auth/signup', () => {
         done();
       });
   });
+  const emailNospace = {
+    firstName: 'chinonso',
+    lastName: 'calix',
+    email: ' ',
+    password: 'password',
+    type: 'client',
+    isAdmin: false,
+  };
+  it('Spaces are not allowed', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(emailNospace)
+      .end((request, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Spaces are not allowed');
+        done();
+      });
+  });
   const userWithInvalidEmail = {
     firstName: 'chinonso',
     lastName: 'calix',
@@ -175,7 +193,7 @@ describe('POST api/v1/auth/signup', () => {
     email: 'calix5@gmail.com',
     password: 'password',
   };
-  it('should not allow spaces', (done) => {
+  it('Firstname must be letters', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send(nanfirstname)
@@ -193,7 +211,7 @@ describe('POST api/v1/auth/signup', () => {
     email: 'calix6@gmail.com',
     password: 'password',
   };
-  it('should not allow spaces', (done) => {
+  it('Lastname must be letters', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send(nanlastname)
@@ -223,6 +241,42 @@ describe('POST api/v1/auth/signup', () => {
       });
   });
 
+  const firstnamenospace1 = {
+    firstName: ' ',
+    lastName: 'calix',
+    email: 'calix7@gmail.com',
+    password: 'password',
+  };
+  it('Spaces are not allowed', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(firstnamenospace1)
+      .end((error, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Spaces are not allowed');
+        done();
+      });
+  });
+
+  const firstnamenospace2 = {
+    firstName: ' chinonso',
+    lastName: 'calix',
+    email: 'calix7@gmail.com',
+    password: 'password',
+  };
+  it('Spaces are not allowed', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(firstnamenospace2)
+      .end((error, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Spaces are not allowed');
+        done();
+      });
+  });
+
   const lastnameLength = {
     firstName: 'nonso',
     lastName: 'c',
@@ -237,6 +291,23 @@ describe('POST api/v1/auth/signup', () => {
         response.should.have.status(400);
         response.body.should.have.property('error');
         response.body.error.should.equal('last Name must be atleast 3 alphabets');
+        done();
+      });
+  });
+  const lastnamenospace = {
+    firstName: 'nonso',
+    lastName: ' ',
+    email: 'calix8@gmail.com',
+    password: 'password',
+  };
+  it('Spaces are not allowed', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(lastnamenospace)
+      .end((error, response) => {
+        response.should.have.status(400);
+        response.body.should.have.property('error');
+        response.body.error.should.equal('Spaces are not allowed');
         done();
       });
   });
@@ -294,7 +365,61 @@ describe('POST /auth/login', () => {
       .end((error, response) => {
         response.should.have.status(404);
         response.body.should.have.property('error');
-        response.body.error.should.equal('Email does not exist');
+        response.body.error.should.equal('Invalid credentials');
+        done();
+      });
+  });
+
+  it('no spaces', (done) => {
+    const noSpaceEmail = {
+      email: ' ',
+      password: 'password',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(noSpaceEmail)
+      .end((error, response) => {
+        response.should.have.status(400);
+        done();
+      });
+  });
+
+  it('invalid email', (done) => {
+    const invalidEmail = {
+      email: 'calix123gmail.com',
+      password: 'password',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(invalidEmail)
+      .end((error, response) => {
+        response.should.have.status(400);
+        done();
+      });
+  });
+  it('no space', (done) => {
+    const nospacePassword = {
+      email: 'calix123gmail.com',
+      password: ' password',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(nospacePassword)
+      .end((error, response) => {
+        response.should.have.status(400);
+        done();
+      });
+  });
+  it('no empty space', (done) => {
+    const nospacePassword = {
+      email: 'calix123gmail.com',
+      password: ' ',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(nospacePassword)
+      .end((error, response) => {
+        response.should.have.status(400);
         done();
       });
   });
@@ -304,7 +429,7 @@ describe('Create account test', () => {
   const accountnumber = Math.floor(1000000000 + Math.random() * 9000000000);
   const account = {
     type: 'savings',
-    balance: 50000.32,
+    balance: 50000,
     accountnumber,
     owner: 6,
   };
@@ -319,14 +444,33 @@ describe('Create account test', () => {
     done();
   });
 
+  const negativeBalance = {
+    type: 'savings',
+    balance: -50000,
+    accountnumber,
+    owner: 6,
+  };
+
+  it('it should not allow a negative opening balance', (done) => {
+    chai.request(server)
+      .post('/api/v1/accounts')
+      .set('Authorization', `Bearer ${token}`)
+      .send(negativeBalance)
+      .end((error, response) => {
+        response.should.have.status(400);
+      });
+    done();
+  });
+
+
   it('you should not be able to create account if you are not logged in', (done) => {
     chai.request(server)
       .post('/api/v1/accounts')
       .send(account)
       .end((err, response) => {
-        response.should.have.status(401);
+        response.should.have.status(500);
         response.body.should.have.property('error');
-        response.body.error.should.equal('Unauthorized');
+        response.body.error.should.equal('Internal Server Error');
       });
     done();
   });
@@ -335,11 +479,11 @@ describe('Create account test', () => {
     firstName: 'chinonso',
     lastName: 'calix',
     email: 'staff@gmail.com',
-    password: 1234,
+    password: 123,
     type: 'staff',
     isAdmin: true,
   };
-  const staffToken = jwt.sign(staff, process.env.SECRET, { expiresIn: '1h' });
+  staffToken = jwt.sign(staff, process.env.SECRET, { expiresIn: '1h' });
   it('should be able to signup a staff with the correct details', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')

@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "set ENV_TEST=true && npm run droptable && npm run migrate && mocha --require babel-core/register server/test/**/*.js --timeout 10000 --exit",
-    "start": "npm run migrate && cross-env NODE_ENV=development node bin/dev",
+    "start": "cross-env NODE_ENV=development nodemon bin/dev",
     "clean": "rm -rf dist",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "migrate": "babel-node bin/migrate",
     "cleartable": "babel-node bin/clear",
     "droptable": "babel-node bin/drop --exit",
-    "seed": "babel-node bin/seed --exit"
+    "seed": "babel-node bin/seed --exit",
+    "seedtest": "babel-node bin/seedTest --exit"
   },
   "repository": {
     "type": "git",

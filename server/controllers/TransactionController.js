@@ -4,6 +4,13 @@ class TransactionController {
   static async debitAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     request.body.cashier = request.userData.id;
+    const checkAccountNumber = await Transaction.checkAccountNumber(request.params.accountNum);
+    if (!checkAccountNumber) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Account does not exist',
+      });
+    }
     const transaction = await Transaction.debit(request.body);
     return response.status(200).json({
       status: 200,
@@ -15,6 +22,13 @@ class TransactionController {
   static async creditAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     request.body.cashier = request.userData.id;
+    const checkAccountNumber = await Transaction.checkAccountNumber(request.params.accountNum);
+    if (!checkAccountNumber) {
+      return response.status(404).json({
+        status: 404,
+        error: 'Account does not exist',
+      });
+    }
     const transaction = await Transaction.credit(request.body);
     return response.status(200).json({
       status: 200,
@@ -24,17 +38,17 @@ class TransactionController {
   }
 
   static async getTransaction(request, response) {
-    const checkTransac = await Transaction.checkTransac(request.params.transactionsId);
-    if (!checkTransac) {
+    const checkTransaction = await Transaction.checkTransaction(request.params.transactionsId);
+    if (!checkTransaction) {
       return response.status(404).json({
         status: 404,
         error: 'Transaction does not exist',
       });
     }
-    const onetran = await Transaction.oneTransaction(request.params.transactionsId);
+    const onetransaction = await Transaction.oneTransaction(request.params.transactionsId);
     return response.status(200).json({
       status: 200,
-      data: onetran.rows,
+      data: onetransaction.rows,
     });
   }
 }

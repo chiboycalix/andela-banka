@@ -17,6 +17,8 @@ module.exports = {
     "consistent-return": 0,
     "array-callback-return": 0,
     "import/no-extraneous-dependencies":0,
-    "no-undef":0
+    "no-undef":0,
+    "eslint-disable no-unused-vars":off,
+    "eslint-disable no-restricted-globals":off,
   },
 };
