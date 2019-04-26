@@ -1,6 +1,16 @@
 import Account from '../queryhelpers/accountQuery';
 
 class AccountController {
+  /**
+   * Creates a new bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async createAccount(request, response) {
     request.body.owner = request.userData.id;
     request.body.firstname = request.userData.firstname;
@@ -25,6 +35,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Edits a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async editAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     const checkAccount = await Account.checkAccount(request.params.accountNum);
@@ -42,6 +62,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Gets a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async getAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {
@@ -68,6 +98,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Gets all transactions on a particular bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async getAllTransactions(request, response) {
     const alltransactions = await Account.getAllTransactions(request.params.accountNum);
     return response.status(200).json({
@@ -76,6 +116,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Gets all bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async getAccounts(request, response) {
     const active = await Account.getActiveAccounts(request.query.status);
     
@@ -98,7 +148,16 @@ class AccountController {
     });  
 }
 
-
+/**
+   * Deletes a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof AccountController
+   */
   static async deleteAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {

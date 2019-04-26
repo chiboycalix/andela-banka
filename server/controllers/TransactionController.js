@@ -1,6 +1,16 @@
 import Transaction from '../queryhelpers/transactionQuery';
 
 class TransactionController {
+  /**
+   * Debits a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof TransactionController
+   */
   static async debitAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     request.body.cashier = request.userData.id;
@@ -19,6 +29,16 @@ class TransactionController {
     });
   }
 
+  /**
+   * Credits a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof TransactionController
+   */
   static async creditAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     request.body.cashier = request.userData.id;
@@ -37,6 +57,16 @@ class TransactionController {
     });
   }
 
+  /**
+   * Get a transaction by id
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} response - response
+   * @returns
+   * @memberof TransactionController
+   */
   static async getTransaction(request, response) {
     const checkTransaction = await Transaction.checkTransaction(request.params.transactionsId);
     if (!checkTransaction) {

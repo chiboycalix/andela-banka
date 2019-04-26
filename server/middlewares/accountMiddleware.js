@@ -1,6 +1,16 @@
 import db from '../db/index';
 
 class Middleware {
+  /**
+   * Account Validation middleware
+   *
+   * @static
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static accountValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);
     const nonNegativeBalance = RegExp(/^\d*\.?\d+$/);
@@ -39,6 +49,16 @@ class Middleware {
     next();
   }
 
+  /**
+   * Account Validation middleware
+   *
+   * @static
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static createAccountValidation(request, response, next) {
     const nonNegativeBalance = RegExp(/^\d*\.?\d+$/);
     const { balance } = request.body;
@@ -57,6 +77,16 @@ class Middleware {
     next();
   }
 
+  /**
+   * Account Validation middleware
+   *
+   * @static
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static async debitValidation(request, response, next) {
     const { amount } = request.body;
     const { accountNum } = request.params;
@@ -72,6 +102,16 @@ class Middleware {
     next();
   }
   
+  /**
+   * Transaction Validation middleware
+   *
+   * @static
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static async isValidId(request, response, next) {
     const { transactionsId } = request.params;
     const positiveInteger = RegExp(/^\d*\.?\d+$/);
@@ -83,6 +123,17 @@ class Middleware {
     }
     next();
   }
+
+  /**
+   * Transaction Validation middleware
+   *
+   * @static
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static async getTransactionsValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);
     const { accountNum } = request.params;

@@ -4,6 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class Middleware {
+  /**
+   * Cleint Middleware
+   *
+   * @static
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static clientData(request, response, next) {
     try {
       const token = request.headers.authorization.split(' ')[1];
@@ -18,6 +28,16 @@ class Middleware {
     }
   }
 
+  /**
+   * Staff Middleware
+   *
+   * @static
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static staffData(request, response, next) {
     const token = request.headers.authorization.split(' ')[1];
     const decoded = jwt.verify(token, process.env.SECRET);
@@ -32,6 +52,16 @@ class Middleware {
     next();
   }
 
+  /**
+   * Email check Middleware
+   *
+   * @static
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
+   * @returns
+   * @memberof Middleware
+   */
   static async emailCheck(request, response, next) {
     const { userEmail } = request.params;
     const pattern = RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);

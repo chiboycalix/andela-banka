@@ -7,6 +7,16 @@ dotenv.config();
 
 
 class UserController {
+  /**
+   * Sign's up a user
+   *
+   * @static
+   * @param {Object} request  - request
+   * @param {Object} response - response
+   * @param {Object} next     - next
+   * @returns
+   * @memberof UserController
+   */
   static async signup(request, response) {
     const check = await User.checkEmail(request.body.email).catch(error => error.message);
     if (check) {
@@ -29,6 +39,16 @@ class UserController {
     });
   }
 
+  /**
+   * Login a user
+   *
+   * @static
+   * @param {Object} request  - request
+   * @param {Object} response - response
+   * @param {Object} next     - next
+   * @returns
+   * @memberof UserController
+   */
   static async login(request, response) {
     const checkMail = await User.checkEmail(request.body.email);
     if (!checkMail) {
@@ -59,6 +79,16 @@ class UserController {
     });
   }
 
+  /**
+   * Get all accounts created by a user using his email a
+   *
+   * @static
+   * @param {Object} request  - request
+   * @param {Object} response - response
+   * @param {Object} next     - next
+   * @returns
+   * @memberof UserController
+   */
   static async getAccounts(request, response) {
     const account = await User.allAccounts(request.params.userEmail);
     const checkAccount = await User.checkAccount(request.params.userEmail);

@@ -1,5 +1,10 @@
 import db from '../db/index';
-
+/**
+ * Debit transaction query
+ * 
+ * @param {object} transactionDetails
+ * @returns
+ */
 const debit = async (transactionDetails) => {
   const {
     transactionType, accountnumber, cashier, amount,
@@ -36,7 +41,12 @@ const debit = async (transactionDetails) => {
     ],
   ).catch(error => error.message);
 };
-
+/**
+ * Credit transaction query
+ *
+ * @param {object} transactionDetails
+ * @returns
+ */
 const credit = async (transactionDetails) => {
   const {
     transactionType, accountnumber, cashier, amount,
@@ -71,10 +81,22 @@ const credit = async (transactionDetails) => {
     ],
   ).catch(error => error.message);
 };
+
+/**
+ * Get transaction by Id query
+ *
+ * @param {object} id
+ */
 const oneTransaction = id => db.query(
   `SELECT * FROM transactions WHERE id = ${id}`,
 );
 
+/**
+ * Check if transaction exists
+ * 
+ * @param {object} id
+ * @returns
+ */
 const checkTransaction = async (id) => {
   const check = 'SELECT * FROM transactions WHERE id = $1 LIMIT 1';
   const transId = await db.query(check, [id]).catch(error => error.message);
@@ -83,7 +105,12 @@ const checkTransaction = async (id) => {
   }
   return false;
 };
-
+/**
+ * Check if account number exists
+ *
+ * @param {object} accountnumber
+ * @returns
+ */
 const checkAccountNumber = async (accountnumber) => {
   const check = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
   const accNum = await db.query(check, [accountnumber]).catch(error => error.message);

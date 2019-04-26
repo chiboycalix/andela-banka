@@ -1,5 +1,15 @@
 /* eslint-disable no-restricted-globals */
 class Middleware {
+  /**
+   * Signup validations middleware
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - next
+   * @returns
+   * @memberof Middleware
+   */
   static signupValidations(request, response, next) {
     const {
       firstName, lastName, email, password,
@@ -88,6 +98,16 @@ class Middleware {
     next();
   }
 
+  /**
+   * login validations middleware
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - next
+   * @returns
+   * @memberof Middleware
+   */
   static loginValidations(request, response, next) {
     const { email, password } = request.body;
     const pattern = RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
