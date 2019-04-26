@@ -1,5 +1,10 @@
 import db from '../db/index';
-
+/**
+ *
+ *
+ * @param {*} accountDetails
+ * @returns
+ */
 const registerAccount = (accountDetails) => {
   const {
     type,
@@ -29,7 +34,12 @@ const registerAccount = (accountDetails) => {
     ],
   ).catch(error => error.message);
 };
-
+/**
+ *
+ *
+ * @param {*} accountDetails
+ * @returns
+ */
 const changeAccount = (accountDetails) => {
   const { status, accountnumber } = accountDetails;
   return db.query(
@@ -41,7 +51,12 @@ const changeAccount = (accountDetails) => {
     ],
   ).catch(error => error.message);
 };
-
+/**
+ *
+ *
+ * @param {*} accountnumber
+ * @returns
+ */
 const checkAccount = async (accountnumber) => {
   const check = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
   const accNum = await db.query(check, [accountnumber]).catch(error => error.message);
@@ -50,26 +65,48 @@ const checkAccount = async (accountnumber) => {
   }
   return false;
 };
+
+/**
+ *
+ *
+ * @param {*} accountnumber
+ */
 const deleleAccount = accountnumber => db.query(
   `DELETE FROM
           accounts
         WHERE accountnumber = '${accountnumber}'`,
 );
 
+/**
+ *
+ *
+ * @param {*} accountnumber
+ */
 const getAllTransactions = accountnumber => db.query(
   `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
 );
+
 
 const getAllAccounts = () => db.query(
   'SELECT * FROM accounts',
 ).catch(error => error.message);
 
+/**
+ *
+ *
+ * @param {*} accountnumber
+ */
 const getOneAccount = accountnumber => db.query(
   `SELECT * FROM
           accounts
         WHERE accountnumber = '${accountnumber}'`,
 ).catch(error => error.message);
 
+/**
+ *
+ *
+ * @param {*} active
+ */
 const getActiveAccounts = active => db.query(
   `SELECT * FROM accounts WHERE status = '${active}'`,
 ).catch(error => error.message);
