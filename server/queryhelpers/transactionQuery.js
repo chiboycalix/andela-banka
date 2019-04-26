@@ -1,8 +1,8 @@
 import db from '../db/index';
 /**
- *
- *
- * @param {*} transactionDetails
+ * Debit transaction query
+ * 
+ * @param {object} transactionDetails
  * @returns
  */
 const debit = async (transactionDetails) => {
@@ -42,9 +42,9 @@ const debit = async (transactionDetails) => {
   ).catch(error => error.message);
 };
 /**
+ * Credit transaction query
  *
- *
- * @param {*} transactionDetails
+ * @param {object} transactionDetails
  * @returns
  */
 const credit = async (transactionDetails) => {
@@ -81,13 +81,20 @@ const credit = async (transactionDetails) => {
     ],
   ).catch(error => error.message);
 };
+
+/**
+ * Get transaction by Id query
+ *
+ * @param {object} id
+ */
 const oneTransaction = id => db.query(
   `SELECT * FROM transactions WHERE id = ${id}`,
 );
+
 /**
- *
- *
- * @param {*} id
+ * Check if transaction exists
+ * 
+ * @param {object} id
  * @returns
  */
 const checkTransaction = async (id) => {
@@ -99,9 +106,9 @@ const checkTransaction = async (id) => {
   return false;
 };
 /**
+ * Check if account number exists
  *
- *
- * @param {*} accountnumber
+ * @param {object} accountnumber
  * @returns
  */
 const checkAccountNumber = async (accountnumber) => {

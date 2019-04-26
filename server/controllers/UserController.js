@@ -8,7 +8,7 @@ dotenv.config();
 
 class UserController {
   /**
-   * Signup a user
+   * Sign's up a user
    *
    * @static
    * @param {object} request  - request

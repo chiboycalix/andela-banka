@@ -2,7 +2,7 @@ import db from '../db/index';
 /**
  *
  *
- * @param {*} accountDetails
+ * @param {object} accountDetails
  * @returns
  */
 const registerAccount = (accountDetails) => {
@@ -37,7 +37,7 @@ const registerAccount = (accountDetails) => {
 /**
  *
  *
- * @param {*} accountDetails
+ * @param {object} accountDetails
  * @returns
  */
 const changeAccount = (accountDetails) => {
@@ -54,7 +54,7 @@ const changeAccount = (accountDetails) => {
 /**
  *
  *
- * @param {*} accountnumber
+ * @param {object} accountnumber
  * @returns
  */
 const checkAccount = async (accountnumber) => {
@@ -69,18 +69,17 @@ const checkAccount = async (accountnumber) => {
 /**
  *
  *
- * @param {*} accountnumber
+ * @param {object} accountnumber
  */
 const deleleAccount = accountnumber => db.query(
   `DELETE FROM
           accounts
         WHERE accountnumber = '${accountnumber}'`,
 );
-
 /**
  *
  *
- * @param {*} accountnumber
+ * @param {object} accountnumber
  */
 const getAllTransactions = accountnumber => db.query(
   `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
@@ -93,8 +92,7 @@ const getAllAccounts = () => db.query(
 
 /**
  *
- *
- * @param {*} accountnumber
+ * @param {object} accountnumber
  */
 const getOneAccount = accountnumber => db.query(
   `SELECT * FROM
@@ -105,7 +103,7 @@ const getOneAccount = accountnumber => db.query(
 /**
  *
  *
- * @param {*} active
+ * @param {object} active
  */
 const getActiveAccounts = active => db.query(
   `SELECT * FROM accounts WHERE status = '${active}'`,

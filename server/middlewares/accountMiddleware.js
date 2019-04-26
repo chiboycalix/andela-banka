@@ -2,14 +2,14 @@ import db from '../db/index';
 
 class Middleware {
   /**
-   * Validate an account
+   * Account Validation middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static accountValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);
@@ -50,14 +50,14 @@ class Middleware {
   }
 
   /**
-   * Validate an account on creation
+   * Account Validation middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static createAccountValidation(request, response, next) {
     const nonNegativeBalance = RegExp(/^\d*\.?\d+$/);
@@ -78,14 +78,14 @@ class Middleware {
   }
 
   /**
-   * Debit account validation
+   * Account Validation middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static async debitValidation(request, response, next) {
     const { amount } = request.body;
@@ -103,14 +103,14 @@ class Middleware {
   }
   
   /**
-   * Transactions Id validation
+   * Transaction Validation middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static async isValidId(request, response, next) {
     const { transactionsId } = request.params;
@@ -125,14 +125,14 @@ class Middleware {
   }
 
   /**
-   * Get all transactions Validation
+   * Transaction Validation middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {Object} request   - request
+   * @param {Object} response  - response
+   * @param {Object} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static async getTransactionsValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);

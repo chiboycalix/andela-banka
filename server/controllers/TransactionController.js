@@ -2,7 +2,7 @@ import Transaction from '../queryhelpers/transactionQuery';
 
 class TransactionController {
   /**
-   * Debits an account
+   * Debits a bank account
    *
    * @static
    * @param {object} request  - request
@@ -30,7 +30,7 @@ class TransactionController {
   }
 
   /**
-   * Credits an account
+   * Credits a bank account
    *
    * @static
    * @param {object} request  - request
@@ -58,12 +58,13 @@ class TransactionController {
   }
 
   /**
-   * Gets a single transaction
+   * Get a transaction by id
    *
    * @static
    * @param {object} request  - request
    * @param {object} response - response
    * @param {object} next     - callback
+
    * @returns
    * @memberof TransactionController
    */

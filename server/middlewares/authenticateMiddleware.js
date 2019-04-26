@@ -1,14 +1,14 @@
 /* eslint-disable no-restricted-globals */
 class Middleware {
   /**
-   * Signup Validations
+   * Signup validations middleware
    *
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {object} next     - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static signupValidations(request, response, next) {
     const {
@@ -99,14 +99,14 @@ class Middleware {
   }
 
   /**
-   * Login Validations
+   * login validations middleware
    *
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {object} next     - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static loginValidations(request, response, next) {
     const { email, password } = request.body;

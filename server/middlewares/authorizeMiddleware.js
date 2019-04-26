@@ -5,14 +5,14 @@ dotenv.config();
 
 class Middleware {
   /**
-   * Check if returned token is for a user
+   * Cleint Middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static clientData(request, response, next) {
     try {
@@ -29,14 +29,14 @@ class Middleware {
   }
 
   /**
-   * Check if returned token is for a staff
+   * Staff Middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static staffData(request, response, next) {
     const token = request.headers.authorization.split(' ')[1];
@@ -53,14 +53,14 @@ class Middleware {
   }
 
   /**
-   * Check if an Email is a Valid Email address
+   * Email check Middleware
    *
    * @static
-   * @param {object} request  - request
-   * @param {object} response - response
-   * @param {object} next     - callback
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
    * @returns
-   * @memberof AccountController
+   * @memberof Middleware
    */
   static async emailCheck(request, response, next) {
     const { userEmail } = request.params;

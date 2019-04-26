@@ -2,7 +2,7 @@ import Account from '../queryhelpers/accountQuery';
 
 class AccountController {
   /**
-   * Creates a bank account
+   * Creates a new bank account
    *
    * @static
    * @param {object} request  - request
@@ -34,13 +34,13 @@ class AccountController {
       message: 'Account created successfully',
     });
   }
-/**
+
+  /**
    * Edits a bank account
    *
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
@@ -60,7 +60,9 @@ static async editAccount(request, response) {
       message: 'Account edited',
     });
   }
-/**
+
+
+  /**
    * Gets a single bank account
    *
    * @static
@@ -97,7 +99,7 @@ static async editAccount(request, response) {
   }
 
   /**
-   * Gets all transactions
+   * Gets all transactions on a particular bank account
    *
    * @static
    * @param {object} request  - request
@@ -115,7 +117,7 @@ static async editAccount(request, response) {
   }
 
   /**
-   * Gets all Accounts
+   * Gets all bank account
    *
    * @static
    * @param {object} request  - request
@@ -147,7 +149,7 @@ static async editAccount(request, response) {
 }
 
 /**
-   * Deletes an account
+   * Deletes a bank account
    *
    * @static
    * @param {object} request  - request
