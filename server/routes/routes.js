@@ -5,7 +5,7 @@ import authenticateMiddleware from '../middlewares/authenticateMiddleware';
 import AccountController from '../controllers/AccountController';
 import UserController from '../controllers/UserController';
 
-const { clientData, staffData, emailCheck } = authorizeMiddleware;
+const { clientData, staffData, userData, emailCheck } = authorizeMiddleware;
 const { accountValidation, debitValidation, isValidId,createAccountValidation, getTransactionsValidation } = accountMiddleware;
 const { signupValidations, loginValidations } = authenticateMiddleware;
 
@@ -15,7 +15,7 @@ export default (router) => {
     message: 'Welcome to banka, to view the API documentation, visit https://banka-challenge-3.herokuapp.com/api/v1/docs',
   }));
   
-  router.post('/api/v1/transactions/:accountNum/debit', staffData, accountValidation, debitValidation, TransactionController.debitAccount);
+  router.post('/api/v1/transactions/:accountNum/debit', userData, accountValidation, debitValidation, TransactionController.debitAccount);
   router.post('/api/v1/transactions/:accountNum/credit', staffData, accountValidation, TransactionController.creditAccount);
   router.get('/api/v1/transactions/:transactionsId', clientData, isValidId, TransactionController.getTransaction);
 
