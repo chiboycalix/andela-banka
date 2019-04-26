@@ -20,7 +20,7 @@ describe('server.js tests', () => {
       .end((error, response) => {
         response.should.have.status('200');
         response.body.should.have.property('message');
-        response.body.message.should.equal('Welcome to banka');
+        response.body.message.should.equal('Welcome to banka, to view the API documentation, visit https://banka-challenge-3.herokuapp.com/api/v1/docs');
         done();
       });
   });

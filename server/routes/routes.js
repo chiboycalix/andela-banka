@@ -12,7 +12,7 @@ const { signupValidations, loginValidations } = authenticateMiddleware;
 export default (router) => {
   router.get('/', (request, response) => response.status(200).json({
     status: 200,
-    message: 'Welcome to banka',
+    message: 'Welcome to banka, to view the API documentation, visit https://banka-challenge-3.herokuapp.com/api/v1/docs',
   }));
   
   router.post('/api/v1/transactions/:accountNum/debit', staffData, accountValidation, debitValidation, TransactionController.debitAccount);
@@ -20,7 +20,7 @@ export default (router) => {
   router.get('/api/v1/transactions/:transactionsId', clientData, isValidId, TransactionController.getTransaction);
 
   router.post('/api/v1/accounts/', clientData, createAccountValidation, AccountController.createAccount);
-  router.get('/api/v1/accounts/:accountNum', clientData, accountValidation, AccountController.getAccount);
+  router.get('/api/v1/accounts/:accountNum', clientData, getTransactionsValidation, AccountController.getAccount);
   router.get('/api/v1/accounts/:accountNum/transactions', clientData, getTransactionsValidation, AccountController.getAllTransactions);
   router.patch('/api/v1/accounts/:accountNum', staffData, getTransactionsValidation, AccountController.editAccount);
   router.get('/api/v1/accounts/', staffData, AccountController.getAccounts);
