@@ -11,9 +11,9 @@ class UserController {
    * Sign's up a user
    *
    * @static
-   * @param {Object} request  - request
-   * @param {Object} response - response
-   * @param {Object} next     - next
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof UserController
    */
@@ -43,9 +43,9 @@ class UserController {
    * Login a user
    *
    * @static
-   * @param {Object} request  - request
-   * @param {Object} response - response
-   * @param {Object} next     - next
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof UserController
    */
@@ -80,12 +80,12 @@ class UserController {
   }
 
   /**
-   * Get all accounts created by a user using his email a
+   * Get all accounts created by a user using his email address as the filter criteria
    *
    * @static
-   * @param {Object} request  - request
-   * @param {Object} response - response
-   * @param {Object} next     - next
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof UserController
    */

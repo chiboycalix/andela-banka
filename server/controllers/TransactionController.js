@@ -7,7 +7,7 @@ class TransactionController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof TransactionController
    */
@@ -35,7 +35,7 @@ class TransactionController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof TransactionController
    */
@@ -63,7 +63,8 @@ class TransactionController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
+
    * @returns
    * @memberof TransactionController
    */

@@ -85,12 +85,12 @@ const getAllTransactions = accountnumber => db.query(
   `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
 );
 
+
 const getAllAccounts = () => db.query(
   'SELECT * FROM accounts',
 ).catch(error => error.message);
 
 /**
- *
  *
  * @param {object} accountnumber
  */

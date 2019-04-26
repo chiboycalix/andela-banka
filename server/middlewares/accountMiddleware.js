@@ -71,7 +71,7 @@ class Middleware {
     if(!nonNegativeBalance.test(balance)) {
       return response.status(400).json({
         status: 400,
-        error: 'negative amount not allowed',
+        error: 'Bad request',
       })
     }
     next();

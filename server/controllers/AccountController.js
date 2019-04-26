@@ -7,7 +7,7 @@ class AccountController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
@@ -41,11 +41,10 @@ class AccountController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
    * @returns
    * @memberof AccountController
    */
-  static async editAccount(request, response) {
+static async editAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {
@@ -62,13 +61,14 @@ class AccountController {
     });
   }
 
+
   /**
-   * Gets a bank account
+   * Gets a single bank account
    *
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
@@ -104,7 +104,7 @@ class AccountController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
@@ -122,7 +122,7 @@ class AccountController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
@@ -154,7 +154,7 @@ class AccountController {
    * @static
    * @param {object} request  - request
    * @param {object} response - response
-   * @param {object} response - response
+   * @param {object} next     - callback
    * @returns
    * @memberof AccountController
    */
