@@ -18,6 +18,11 @@ body{
 }
 #navbar #logo h2{
     padding: 10px;
+    color: #fff;
+}
+#navbar #logo h2 a{
+    color: #fff;
+    text-decoration: none;
 }
 
 #user_login{
@@ -95,4 +100,35 @@ input[type=submit]:hover{
 #footer p{
     margin-top: 15px;
     color: #fff;
+}
+
+@media only screen and (max-width: 950px) {
+    #user_login{
+        width: 70%;
+        margin-left: 10%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 770px) {
+    #user_login{
+        width: 70%;
+        margin-left: 10%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    #user_login{
+        width: 70%;
+        margin-left: 10%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
 }

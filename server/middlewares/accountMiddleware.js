@@ -43,7 +43,7 @@ class Middleware {
     if(!nonNegativeBalance.test(amount)) {
       return response.status(400).json({
         status: 400,
-        error: 'negative amount not allowed',
+        error: 'Invalid amount',
       })
     }
     next();
@@ -65,13 +65,13 @@ class Middleware {
     if (isNaN(parseFloat(balance, 10))) {
       return response.status(400).json({
         status: 400,
-        error: 'Input a valid amount',
+        error: 'Invalid amount',
       });
     }
     if(!nonNegativeBalance.test(balance)) {
       return response.status(400).json({
         status: 400,
-        error: 'Bad request',
+        error: 'Invalid amount',
       })
     }
     next();

@@ -22,7 +22,7 @@ class UserController {
     if (check) {
       return response.status(409).json({
         status: 409,
-        error: 'Invalid credentials',
+        error: 'User already exists',
       });
     }
     const user = await User.createUser(request.body);

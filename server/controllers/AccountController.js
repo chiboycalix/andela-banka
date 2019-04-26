@@ -110,6 +110,12 @@ static async editAccount(request, response) {
    */
   static async getAllTransactions(request, response) {
     const alltransactions = await Account.getAllTransactions(request.params.accountNum);
+    if (alltransactions.rows.length === 0) {
+      return response.status(200).json({
+        status: 200,
+        message: 'No transaction on this account yet',
+      })
+    }
     return response.status(200).json({
       status: 200,
       data: alltransactions.rows,
