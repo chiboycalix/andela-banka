@@ -1,6 +1,11 @@
 import bcrypt from 'bcryptjs';
 import db from '../db/index';
-
+/**
+ *
+ *
+ * @param {*} userDetails
+ * @returns
+ */
 const createUser = async (userDetails) => {
   const {
     firstName,
@@ -25,7 +30,12 @@ const createUser = async (userDetails) => {
   ).catch(error => error.message);
   return user;
 };
-
+/**
+ *
+ *
+ * @param {*} email
+ * @returns
+ */
 const checkEmail = async (email) => {
   const check = 'SELECT * FROM users WHERE email = $1 LIMIT 1';
   const mail = await db.query(check, [email]).catch(error => error.message);
@@ -35,7 +45,12 @@ const checkEmail = async (email) => {
   return false;
 };
 
-
+/**
+ *
+ *
+ * @param {*} userDetails
+ * @returns
+ */
 const loginUser = (userDetails) => {
   const { email } = userDetails;
   return db.query(
@@ -51,7 +66,11 @@ const checkAccount = async (email) => {
   }
   return false;
 };
-
+/**
+ *
+ *
+ * @param {*} email
+ */
 const allAccounts = email => db.query(
   `SELECT * FROM accounts WHERE email = '${email}'`,
 ).catch(error => error.message);

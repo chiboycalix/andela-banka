@@ -1,6 +1,16 @@
 import Account from '../queryhelpers/accountQuery';
 
 class AccountController {
+  /**
+   * Creates a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async createAccount(request, response) {
     request.body.owner = request.userData.id;
     request.body.firstname = request.userData.firstname;
@@ -24,8 +34,17 @@ class AccountController {
       message: 'Account created successfully',
     });
   }
-
-  static async editAccount(request, response) {
+/**
+   * Edits a bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
+static async editAccount(request, response) {
     request.body.accountnumber = request.params.accountNum;
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {
@@ -41,7 +60,16 @@ class AccountController {
       message: 'Account edited',
     });
   }
-
+/**
+   * Gets a single bank account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async getAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {
@@ -68,6 +96,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Gets all transactions
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async getAllTransactions(request, response) {
     const alltransactions = await Account.getAllTransactions(request.params.accountNum);
     return response.status(200).json({
@@ -76,6 +114,16 @@ class AccountController {
     });
   }
 
+  /**
+   * Gets all Accounts
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async getAccounts(request, response) {
     const active = await Account.getActiveAccounts(request.query.status);
     
@@ -98,7 +146,16 @@ class AccountController {
     });  
 }
 
-
+/**
+   * Deletes an account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async deleteAccount(request, response) {
     const checkAccount = await Account.checkAccount(request.params.accountNum);
     if (!checkAccount) {

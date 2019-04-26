@@ -1,6 +1,16 @@
 import db from '../db/index';
 
 class Middleware {
+  /**
+   * Validate an account
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static accountValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);
     const nonNegativeBalance = RegExp(/^\d*\.?\d+$/);
@@ -39,6 +49,16 @@ class Middleware {
     next();
   }
 
+  /**
+   * Validate an account on creation
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static createAccountValidation(request, response, next) {
     const nonNegativeBalance = RegExp(/^\d*\.?\d+$/);
     const { balance } = request.body;
@@ -51,12 +71,22 @@ class Middleware {
     if(!nonNegativeBalance.test(balance)) {
       return response.status(400).json({
         status: 400,
-        error: 'negative amount not allowed',
+        error: 'Bad request',
       })
     }
     next();
   }
 
+  /**
+   * Debit account validation
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async debitValidation(request, response, next) {
     const { amount } = request.body;
     const { accountNum } = request.params;
@@ -72,6 +102,16 @@ class Middleware {
     next();
   }
   
+  /**
+   * Transactions Id validation
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async isValidId(request, response, next) {
     const { transactionsId } = request.params;
     const positiveInteger = RegExp(/^\d*\.?\d+$/);
@@ -83,6 +123,17 @@ class Middleware {
     }
     next();
   }
+
+  /**
+   * Get all transactions Validation
+   *
+   * @static
+   * @param {object} request  - request
+   * @param {object} response - response
+   * @param {object} next     - callback
+   * @returns
+   * @memberof AccountController
+   */
   static async getTransactionsValidation(request, response, next) {
     const accountNumber = RegExp(/^\d*\.?\d+$/);
     const { accountNum } = request.params;
