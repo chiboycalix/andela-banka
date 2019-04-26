@@ -78,24 +78,25 @@ class AccountController {
 
   static async getAccounts(request, response) {
     const active = await Account.getActiveAccounts(request.query.status);
+    
+    if (!request.query.status) {
+      const account = await Account.getAllAccounts();
+      return response.status(200).json({
+        status: 200,
+        data: account.rows,
+      });
+  }
     if (active.rows.length === 0) {
       return response.status(200).json({
         status: 200,
         message: `No ${request.query.status} account`
       });
-    }
-    if (request.query.status) {
-      return response.status(200).json({
-        status: 200,
-        data: active.rows,
-      });
-    }
-    const account = await Account.getAllAccounts();
+  }
     return response.status(200).json({
       status: 200,
-      data: account.rows,
-    });
-  }
+      data: active.rows,
+    });  
+}
 
 
   static async deleteAccount(request, response) {
