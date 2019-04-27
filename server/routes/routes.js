@@ -5,7 +5,7 @@ import authenticateMiddleware from '../middlewares/authenticateMiddleware';
 import AccountController from '../controllers/AccountController';
 import UserController from '../controllers/UserController';
 
-const { clientData, staffData, userData, emailCheck } = authorizeMiddleware;
+const { clientData, staffData, emailCheck } = authorizeMiddleware;
 const { accountValidation, debitValidation, isValidId,createAccountValidation, getTransactionsValidation } = accountMiddleware;
 const { signupValidations, loginValidations } = authenticateMiddleware;
 

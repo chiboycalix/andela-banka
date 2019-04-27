@@ -51,29 +51,6 @@ class Middleware {
     }
     next();
   }
-/**
-   * User Middleware
-   *
-   * @static
-   * @param {*} request   - request
-   * @param {*} response  - response
-   * @param {*} next      - next
-   * @returns
-   * @memberof Middleware
-   */
-static userData(request, response, next) {
-    const token = request.headers.authorization.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.SECRET);
-    request.userData = decoded;
-    const { type } = request.userData;
-    if (type !== 'client') {
-      return response.status(401).json({
-        status: 401,
-        error: 'Unauthorized',
-      });
-    }
-    next();
-  }
 
   /**
    * Email check Middleware

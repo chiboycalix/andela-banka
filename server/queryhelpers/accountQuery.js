@@ -58,8 +58,8 @@ const changeAccount = (accountDetails) => {
  * @returns
  */
 const checkAccount = async (accountnumber) => {
-  const check = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
-  const accNum = await db.query(check, [accountnumber]).catch(error => error.message);
+  const checkMail = 'SELECT * FROM accounts WHERE accountnumber = $1 LIMIT 1';
+  const accNum = await db.query(checkMail, [accountnumber]).catch(error => error.message);
   if (accNum.rows[0]) {
     return true;
   }

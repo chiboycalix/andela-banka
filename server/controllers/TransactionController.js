@@ -19,7 +19,7 @@ class TransactionController {
     if (!checkAccountNumber) {
       return response.status(404).json({
         status: 404,
-        error: 'Account does not exist',
+        error: 'Account Number does not exist',
       });
     }
 
@@ -65,7 +65,7 @@ class TransactionController {
     if (!checkAccountNumber) {
       return response.status(404).json({
         status: 404,
-        error: 'Account does not exist',
+        error: 'Account Number does not exist',
       });
     }
 
