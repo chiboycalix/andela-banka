@@ -19,6 +19,12 @@ td{
     text-align: left;
     padding: 8px; 
 }
+td a{
+    background: #003459;
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+}
 tr:nth-child(even){
     background-color: #fff;
 }

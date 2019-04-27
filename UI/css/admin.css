@@ -28,6 +28,20 @@ td{
     text-align: left;
     padding: 8px; 
 }
+button#btn-1{
+    padding: 5px;
+    background: #003459;
+    color: #fff;
+    border: 1px solid #003459;
+    cursor: pointer;
+}
+button#btn-2{
+    padding: 5px;
+    color: #fff;
+    background: rgb(177, 17, 17);
+    border: 1px solid rgb(177, 17, 17);
+    cursor: pointer;
+}
 tr:nth-child(even){
     background-color: #f2f2f2;
 }

@@ -25,3 +25,13 @@ td{
 tr:nth-child(even){
     background-color: #fff;
 }
+a i.fas{
+    padding: 5px;
+    font-size: 20px;
+}
+a i.fa-trash-alt{
+    color: red;
+}
+a i.fa-eye{
+    color: #003459;
+}
