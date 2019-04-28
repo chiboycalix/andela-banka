@@ -1,4 +1,3 @@
-import nodemailer from 'nodemailer';
 import Transaction from '../queryhelpers/transactionQuery';
 
 class TransactionController {
@@ -24,21 +23,6 @@ class TransactionController {
     }
 
   
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'igwechinonso77@gmail.com', 
-        pass: '081658424422'
-      }
-    });
-    await transporter.sendMail({
-      from: '"MyBanka" igwechinonso77@gmail.com',
-      to: "igwechinonso1994@gmail.com",
-      subject: "Debit Notification",
-      html: `Your account was debited by ${request.body.amount}`
-    });
 
     const transaction = await Transaction.debit(request.body);
     return response.status(200).json({
@@ -68,22 +52,6 @@ class TransactionController {
         error: 'Account Number does not exist',
       });
     }
-
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'igwechinonso77@gmail.com', 
-        pass: '081658424422'
-      }
-    });
-    await transporter.sendMail({
-      from: '"MyBanka" igwechinonso77@gmail.com',
-      to: "igwechinonso1994@gmail.com",
-      subject: "Credit Notification",
-      html: `Your account was credited with ${request.body.amount}`
-    });
 
     const transaction = await Transaction.credit(request.body);
     return response.status(200).json({
