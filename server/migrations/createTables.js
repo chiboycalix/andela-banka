@@ -20,7 +20,7 @@ const createAccount = `CREATE TABLE IF NOT EXISTS accounts
     balance double precision,
     type character varying(100),
     owner integer,
-    status character varying(100) DEFAULT 'active'::character varying,
+    status character varying(100) DEFAULT 'draft'::character varying,
     createdon timestamp without time zone,
     CONSTRAINT accounts_pkey PRIMARY KEY (id),
     CONSTRAINT accounts_owner_fkey FOREIGN KEY (owner)

@@ -7,11 +7,11 @@ import db from '../db/index';
  */
 const debit = async (transactionDetails) => {
   const {
-    transactionType, accountnumber, cashier, amount,
+    transactionType, accountnumber, cashier, amount, email,
   } = transactionDetails;
   const createdon = new Date();
   const account = await db.query(
-    `SELECT * FROM accounts WHERE accountnumber = ${accountnumber}`,
+    `SELECT email, accountnumber, balance FROM accounts WHERE accountnumber = ${accountnumber}`,
   );
   const oldbalance = account.rows[0].balance;
   const accountbalance = oldbalance - amount;
