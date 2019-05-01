@@ -30,9 +30,10 @@
                     <h3>Login /</h3><span>Enter Login Details</span> 
                 </div>
                 <div id="user_login">
-                    <form action="dashboard.html">
-                       <input type="text" placeholder="Enter email">
-                       <input type="password" placeholder="Enter password">
+                    <form id="signin-form">
+                        <p id="error_message_login" class="error"></p>
+                       <input type="text" id="email-login" placeholder="Enter email">
+                       <input type="password" id="password-login" placeholder="Enter password">
                        <input type="submit" value="Login"> 
                     </form>
                   <p>Not yet Registered? <a href="javascipt:void(0);" onclick="signupFunc()">Register here</a></p>
@@ -44,7 +45,7 @@
                </div>
                <div id="user_signup">
                   <form id="signup-form">
-                      <p id="error_message" class="error"></p>
+                      <p id="error_message_signup" class="error"></p>
                      <input type="text" id="firstname" name="firstname" placeholder="Enter First Name">
                      <input type="text" id="lastname" name="lastname" placeholder="Enter Last Name">
                      <input type="text" id="email" name="email" placeholder="Enter email">
