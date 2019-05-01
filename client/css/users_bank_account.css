@@ -1,0 +1,37 @@
+#users_bank_account{
+    margin: auto;
+    margin-top: 70px;
+}
+#users_bank_account h2{
+    margin-top: 90px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: 5%;
+}
+th{
+    text-align: left;
+    padding: 8px;
+    background: #003459;
+    color: #fff;
+}
+td{
+    text-align: left;
+    padding: 8px; 
+}
+tr:nth-child(even){
+    background-color: #fff;
+}
+a i.fas{
+    padding: 5px;
+    font-size: 20px;
+}
+a i.fa-trash-alt{
+    color: red;
+}
+a i.fa-eye{
+    color: #003459;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <title>User | Welcome</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <h1><a href="index.html">MyBanka</a> </h1>
+      <nav>
+        <ul>
+          <li><a href="javascipt:void(0);" id="myBtn">Login</a></li>
+          <li><a href="javascipt:void(0);" id="myBtn2">Sign up</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <a href="javascipt:void(0);" onclick="closeModal()" class="close">&times;</a>
+            <div id="login">
+                 <div id="second_navbar">
+                    <h3>Login /</h3><span>Enter Login Details</span> 
+                </div>
+                <div id="user_login">
+                    <form action="dashboard.html">
+                       <input type="text" placeholder="Enter email">
+                       <input type="password" placeholder="Enter password">
+                       <input type="submit" value="Login"> 
+                    </form>
+                  <p>Not yet Registered? <a href="javascipt:void(0);" onclick="signupFunc()">Register here</a></p>
+                </div>
+            </div>
+            <div id="signup">
+                <div id="second_navbar">
+                   <h3>Signup /</h3><span>Enter Details</span> 
+               </div>
+               <div id="user_signup">
+                  <form id="signup-form">
+                      <p id="error_message" class="error"></p>
+                     <input type="text" id="firstname" name="firstname" placeholder="Enter First Name">
+                     <input type="text" id="lastname" name="lastname" placeholder="Enter Last Name">
+                     <input type="text" id="email" name="email" placeholder="Enter email">
+                     <input type="password" id="password" name="password" placeholder="Enter password">
+                     <input type="submit" value="Register"> 
+                  </form>
+                  <p>Already Registered? <a href="javascipt:void(0);" onclick="loginFunc()">Sign here</a></p>
+              </div>
+           </div>
+      </div>
+    </div>
+
+    <div id="homepage">
+      <h1>Welcome to Banka</h1>
+      <p>Get set for the best banking experience</p>
+      <p>Save your money with us and save your future...</p>
+      <button id="myBtn3">Get Started</button>
+    </div>
+  </div>
+  <script src="./js/index.js"></script>
+  <script src="./js/signup.js"></script>
+</body>
+</html>

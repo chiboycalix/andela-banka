@@ -1,0 +1,26 @@
+#create_account{
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 150px;
+    margin-top: 180px;
+    background: #fff;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 950px) {
+    
+ }
+ @media only screen and (max-width: 700px) {
+    #create_account{
+        width: 80%;
+        margin-left: 5%;
+    }
+    .mobile_navbar{
+        display: block;
+    }
+    #second_navbar{
+        font-size: 75%;
+        width: 100%;
+    }
+     
+ }

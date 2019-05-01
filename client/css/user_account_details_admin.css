@@ -1,0 +1,28 @@
+#user_bank_details{
+  margin-bottom: 200px;
+  text-align: center;
+}
+#user_bank_details #account_image{
+  width: 250px;
+  height: 250px;
+  display: block;
+  margin:auto;
+  margin-top: 50px;
+  border-radius: 50%;
+  border: 2px solid #003459;
+}
+#user_bank_details h2{
+  margin-top: 20px;
+}
+#user_bank_details p{
+  margin-top: 20px;
+}
+#back_btn{
+  background: #003459;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  transform: translateY(-180px);
+  margin-left: 55%;
+}
