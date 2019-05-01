@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/staff.css">
+    <title>Staff | Dashboard</title>
+</head>
+<body>
+   <section>
+       <header>
+           <div id="navbar">
+               <div id="logo">
+                    <h2><a href="index.html">My<span>Banka</span></a></h2> 
+               </div>
+               <div id="username">
+                    <h3>Igwe Chinonso</h3>
+                </div>
+               <div class="toggle_btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+           </div>
+        <div id="sidebar">
+            <img src="../img/avatar.png" alt="" id="user_image">
+            <p id="user_name">Staff</p>
+            <ul>
+              <li><a href="index.html">Dashboard</a></li>
+              <li class="active_ul"><a href="debit_credit.html">Credit/Debit</a></li>
+              <li><a href="users_bank_account.html">Accounts</a></li>
+              <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+       </header>
+   </section>
+   <section>
+    <div id="main">
+        <div id="second_navbar">
+            <h3>Staff Dashboard /</h3><span>Account Details</span> 
+        </div>
+        <div id="credit_debit_user">
+                <h2>Debit / Credit Account</h2>
+            <form>
+                <input type="text" placeholder="Enter Full Name">
+                <input type="text" placeholder="Enter Account Number">
+                <select name="" id="operationType">
+                    <option value="">Select transaction Type</option>
+                    <option value="">Credit</option>
+                    <option value="">Debit</option>
+                </select>
+                <select name="" id="accountType">
+                    <option value="">Select account type</option>
+                    <option value="">Current</option>
+                    <option value="">Savings</option>
+                </select>
+                <input type="text" placeholder="Enter amount">
+                <input type="submit" value="Submit"> 
+            </form>
+        </div>
+    </section>
+
+   <section>
+       <footer>
+        <div id="footer">
+                <p>2019 Copyright @banka</p> 
+        </div>
+       </footer>
+   </section>
+   <script src="../js/dashboard.js"></script>
+</body>
+</html>

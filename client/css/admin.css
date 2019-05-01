@@ -1,0 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    box-sizing: border-box;
+    background: #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+input[type="checkbox"]{
+    display: block;
+    margin: 0 auto;
+}
+table{
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 40px;
+}
+th{
+    text-align: left;
+    padding: 8px;
+    background: #003459;
+    color: #fff;
+}
+td{
+    text-align: left;
+    padding: 8px; 
+}
+button#btn-1{
+    padding: 5px;
+    background: #003459;
+    color: #fff;
+    border: 1px solid #003459;
+    cursor: pointer;
+}
+button#btn-2{
+    padding: 5px;
+    color: #fff;
+    background: rgb(177, 17, 17);
+    border: 1px solid rgb(177, 17, 17);
+    cursor: pointer;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+#main h2{
+    margin-top: 100px;
+    text-align: center;
+}
+#second_navbar{
+    width: 100%;
+}
+
+@media only screen and (max-width: 950px) {
+   
+}
+@media only screen and (max-width: 700px) {
+    table{
+        font-size: 75%;
+        width: 100%;
+    }
+    input[type="checkbox"]{
+        position: relative;
+        width: 50px;
+        height: 30px;
+    
+    }
+    
+    input[type="checkbox"]::before{
+        width: 30px;
+    }
+    input:checked[type="checkbox"]::before{
+        left: 20px;
+    }
+    
+    input[type="checkbox"]::after{
+        width: 4px;
+        left: 20px;
+    }
+    input:checked[type="checkbox"]::after{
+        left: 40px;
+    }
+    
+    
+}

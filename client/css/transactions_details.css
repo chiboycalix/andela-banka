@@ -1,0 +1,28 @@
+#user_history{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 100px;
+}
+#user_history div{
+    border-bottom: 1px solid rgb(170, 168, 168);
+}
+/* #main a{
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+} */
+#back_btn{
+    background:  #003459;
+    color: #fff;
+    padding: 7px;
+    width: 100px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 150px;
+
+}

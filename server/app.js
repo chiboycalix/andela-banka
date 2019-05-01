@@ -14,7 +14,22 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.options('*', cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  })
+);
+
+app.all('/*', function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
+app.use(cors());
 app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerdoc));
 routes(app);
 

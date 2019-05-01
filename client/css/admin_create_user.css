@@ -1,0 +1,48 @@
+#create_account {
+    position: relative;
+    top: 100px;
+    width: 60%;
+    margin-left: 30%;
+}
+#create_account h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+input[type="submit"]{
+    margin-top: 30px;
+}
+form{
+    width: 60%;
+    margin-left: 20%;
+}
+
+@media only screen and (max-width: 950px) {
+    #create_account{
+        width: 90%;
+        margin-left: 5%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 770px) {
+    #create_account{
+        width: 90%;
+        margin-left: 5%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    #create_account{
+        width: 90%;
+        margin-left: 5%;
+    }
+    form{
+        width: 90%;
+        margin-left: 5%;
+    }
+}

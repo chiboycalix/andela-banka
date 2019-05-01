@@ -1,0 +1,225 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  width: 90vw;
+  height: 97.1vh;
+  background: linear-gradient( #00000000, #000 ), url('../img//bgbanka.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+}
+header h1{
+  margin: 20px;
+  padding: 10px;
+  color: #fff;
+}
+header h1 a{
+  color: #fff;
+  text-decoration: none;
+}
+nav{
+  position: relative;
+  float: right;
+  top: -75px;
+}
+nav ul{
+  list-style: none;
+}
+nav ul li{
+  display: block;
+  float: left;
+  padding: 15px;
+}
+nav ul li a{
+  color: #fff;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  margin-left: 98%;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#signup{
+  display: none;
+}
+#user_signup{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+}
+#user_signup p{
+    text-align: center;
+    margin-top: 20px;
+}
+#user_signup p a{
+    color: #003459;;
+    text-decoration: none;
+}
+
+
+
+#user_login{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+}
+#user_login p{
+  text-align: center;
+  margin-top: 20px;
+}
+#user_login p a{
+  color: #00A8E8;
+  text-decoration: none;
+}
+#login{
+  margin-left: 0px;
+  position: relative;
+  display: block;
+}
+#second_navbar{
+  height: 50px;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  color: #000;
+  background: #003459;
+  border-bottom: 1px solid rgb(202, 198, 198);
+  position: relative;
+  text-align: center;
+}
+#second_navbar h3{
+  padding: 15px;
+  display: inline-block;
+  color: #fff;
+}
+#second_navbar span{
+  color: #fff;
+}
+
+
+input[type=text],input[type=password], select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 15px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit]{
+  width: 100%;
+  background: #003459;
+  color: #fff;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover{
+  background: #003459;
+}
+
+#homepage{
+  display: block;
+  margin: 150px auto;
+  color: #fff;
+  width: 50%;
+  text-align: center;
+}
+#homepage h1{
+  padding: 20px;
+}
+#homepage p{
+  padding: 5px;
+}
+#homepage button{
+  padding: 15px;
+  width: 300px;
+  border-radius: 50px;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  border: 1px solid #fff;
+  margin: 40px;
+  cursor: pointer;
+  outline: none;
+}
+#homepage button:hover{
+  background: #003459;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 950px) {
+    
+    
+}
+@media only screen and (max-width: 700px) {
+  #homepage button{
+    margin-left: -40px;
+  }
+  nav{
+    position: relative;
+    float: right;
+    top: -65px;
+  }
+  nav ul{
+    list-style: none;
+  }
+  nav ul li{
+    display: block;
+    float: left;
+    padding: 4px;
+  }
+  nav ul li a{
+    color: #fff;
+    font-size: 25px;
+    text-decoration: none;
+  }
+    
+}
