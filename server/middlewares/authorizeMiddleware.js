@@ -84,7 +84,6 @@ class Middleware {
         error: 'Internal server error',
       });
     }
-    
   }
 
   /**

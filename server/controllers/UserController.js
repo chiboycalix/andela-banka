@@ -86,7 +86,7 @@ class UserController {
       return response.status(200).json({
         status: 200,
         data: {
-          id,firstname, lastname, email, token,
+          id,firstname, lastname, email, token, type
         },
         message: 'login successful',
       })
