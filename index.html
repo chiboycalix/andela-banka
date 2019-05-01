@@ -43,14 +43,15 @@
                    <h3>Signup /</h3><span>Enter Details</span> 
                </div>
                <div id="user_signup">
-                  <form action="dashboard.html">
-                     <input type="text" placeholder="Enter First Name">
-                     <input type="text" placeholder="Enter Last Name">
-                     <input type="text" placeholder="Enter email">
-                     <input type="password" placeholder="Enter password">
+                  <form id="signup-form">
+                      <p id="error_message" class="error"></p>
+                     <input type="text" id="firstname" name="firstname" placeholder="Enter First Name">
+                     <input type="text" id="lastname" name="lastname" placeholder="Enter Last Name">
+                     <input type="text" id="email" name="email" placeholder="Enter email">
+                     <input type="password" id="password" name="password" placeholder="Enter password">
                      <input type="submit" value="Register"> 
                   </form>
-                  <p>Already Registered? <a href="javascipt:void(0);" onclick="loginFunc()">Login here</a></p>
+                  <p>Already Registered? <a href="javascipt:void(0);" onclick="loginFunc()">Sign here</a></p>
               </div>
            </div>
       </div>
@@ -64,5 +65,6 @@
     </div>
   </div>
   <script src="./js/index.js"></script>
+  <script src="./js/signup.js"></script>
 </body>
 </html>
