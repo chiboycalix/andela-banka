@@ -39,7 +39,7 @@ class UserController {
       return response.status(201).json({
         status: 201,
         data: {
-          id,firstname, lastname, email, token,
+          id,firstname, lastname, email, token, type
         },
         message: 'successfully signed up user',
       })
