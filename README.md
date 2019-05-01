@@ -1,6 +1,6 @@
 # andela-banka
 
-[![Build Status](https://travis-ci.org/chiboycalix/andela-banka.svg?branch=develop)](https://travis-ci.org/chiboycalix/andela-banka)[![Coverage Status](https://coveralls.io/repos/github/chiboycalix/andela-banka/badge.svg?branch=develop)](https://coveralls.io/github/chiboycalix/andela-banka?branch=develop)[![Maintainability](https://api.codeclimate.com/v1/badges/e8db7bece90cbaa837b2/maintainability)](https://codeclimate.com/github/chiboycalix/andela-banka/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/e8db7bece90cbaa837b2/test_coverage)](https://codeclimate.com/github/chiboycalix/andela-banka/test_coverage)
+[![Build Status](https://travis-ci.org/chiboycalix/andela-banka.svg?branch=develop)](https://travis-ci.org/chiboycalix/andela-banka)[![Coverage Status](https://coveralls.io/repos/github/chiboycalix/andela-banka/badge.svg?branch=develop)](https://coveralls.io/github/chiboycalix/andela-banka?branch=develop)[![Maintainability](https://api.codeclimate.com/v1/badges/e8db7bece90cbaa837b2/maintainability)](https://codeclimate.com/github/chiboycalix/andela-banka/maintainability)
 
 
 

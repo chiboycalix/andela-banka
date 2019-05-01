@@ -27,15 +27,22 @@ class UserController {
     }
     const user = await User.createUser(request.body);
     const {
-      id, email, firstname, lastname, isadmin, type,
+      id, email, type, firstname, lastname,
     } = user.rows[0];
-    return response.status(201).json({
-      status: 201,
-      token: jwt.sign(user.rows[0], process.env.SECRET, { expiresIn: '1h' }),
-      data: {
-        id, email, isadmin, type, firstname, lastname,
-      },
-      message: 'successfully signed up user',
+    jwt.sign({id, email, type, firstname, lastname}, process.env.SECRET, { expiresIn: '1h' }, (error, token) => {
+      if (error) {
+        return response.status(400).json({
+          status: 400,
+          error: 'invalid token'
+        })
+      }
+      return response.status(201).json({
+        status: 201,
+        data: {
+          id,firstname, lastname, email, token,
+        },
+        message: 'successfully signed up user',
+      })
     });
   }
 
@@ -67,15 +74,22 @@ class UserController {
       });
     }
     const {
-      id, email, isadmin, type,
+      id, email, type, firstname, lastname
     } = login.rows[0];
-    return response.status(200).json({
-      status: 200,
-      token: jwt.sign(login.rows[0], process.env.SECRET, { expiresIn: '1h' }),
-      data: {
-        id, email, isadmin, type,
-      },
-      message: 'login successful',
+    jwt.sign({id, email, type, firstname, lastname}, process.env.SECRET, { expiresIn: '1h' }, (error, token) => {
+      if (error) {
+        return response.status(400).json({
+          status: 400,
+          error: 'invalid token'
+        })
+      }
+      return response.status(200).json({
+        status: 200,
+        data: {
+          id,firstname, lastname, email, token,
+        },
+        message: 'login successful',
+      })
     });
   }
 

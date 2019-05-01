@@ -18,7 +18,7 @@ class AccountController {
     request.body.email = request.userData.email;
     const account = await Account.registerAccount(request.body);
     const {
-      firstname, lastname, email, accountnumber, balance, type, owner,
+      firstname, lastname, email, accountnumber, balance, type, owner, status
     } = account.rows[0];
     return response.status(201).json({
       status: 201,
@@ -30,6 +30,7 @@ class AccountController {
         accountNumber: accountnumber,
         openingBalance: balance,
         type,
+        status
       },
       message: 'Account created successfully',
     });

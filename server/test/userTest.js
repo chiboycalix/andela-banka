@@ -57,7 +57,6 @@ describe('POST api/v1/auth/signup', () => {
         response.should.have.status(201);
         response.body.should.be.a('object');
         response.body.should.have.property('data');
-        response.body.should.have.property('token');
         done();
       });
   });
@@ -493,7 +492,6 @@ describe('Create account test', () => {
         response.should.have.status(201);
         response.body.should.be.a('object');
         response.body.should.have.property('data');
-        response.body.should.have.property('token');
         done();
       });
   });
