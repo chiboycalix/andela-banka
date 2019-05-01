@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "set ENV_TEST=true && npm run droptable && npm run migrate && mocha --require babel-core/register server/test/**/*.js --timeout 10000 --exit",
-    "start": "cross-env NODE_ENV=development node bin/dev",
+    "start": "cross-env NODE_ENV=development nodemon bin/dev",
     "clean": "rm -rf dist",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "migrate": "babel-node bin/migrate",
@@ -37,6 +37,7 @@
     "eslint-plugin-import": "^2.16.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
     "nyc": "^13.3.0"
   },
@@ -48,6 +49,7 @@
     "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
