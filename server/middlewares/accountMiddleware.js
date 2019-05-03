@@ -31,7 +31,7 @@ class Middleware {
     if (!Number.isInteger(parseInt(accountNum, 10))) {
       return response.status(400).json({
         status: 400,
-        error: 'Account number mmust be an Integer',
+        error: 'Account number must be an Integer',
       });
     }
     if(!accountNumber.test(accountNum)) {

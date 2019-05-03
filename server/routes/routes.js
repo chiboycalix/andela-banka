@@ -28,7 +28,7 @@ export default (router) => {
 
   router.post('/api/v1/auth/signup', signupValidations, UserController.signup);
   router.post('/api/v1/auth/login', loginValidations, UserController.login);
-  router.get('/api/v1/user/:userEmail/accounts', clientData, emailCheck, UserController.getAccounts);
+  router.get('/api/v1/user/:userEmail/accounts', allUsers, emailCheck, UserController.getAccounts);
   
   router.use('*', (request, response) => response.status(404).json({
     status: 404,
