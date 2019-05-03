@@ -43,6 +43,37 @@ class Middleware {
   }
 
   /**
+   * User Middleware
+   *
+   * @static
+   * @param {*} request   - request
+   * @param {*} response  - response
+   * @param {*} next      - next
+   * @returns
+   * @memberof Middleware
+   */
+  static allUsers(request, response, next) {
+    try {
+      const token = request.headers.authorization.split(' ')[1];
+      jwt.verify(token, process.env.SECRET, (error, decoded) => {
+        if (error) {
+          return response.status(403).json({
+            status: 403,
+            error: 'Invalid token'
+          });
+        }
+        request.userData = decoded;
+        next();
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 500,
+        error: 'Internal Server Error',
+      });
+    }
+  }
+
+  /**
    * Staff Middleware
    *
    * @static
